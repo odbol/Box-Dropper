@@ -49,6 +49,7 @@ class testApp : public ofBaseApp{
 	//boxes
 private: 
 	BoxDropper boxes;
+	void drawBoxes();
 };
 
 #endif

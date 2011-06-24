@@ -266,6 +266,7 @@
 								<string>E4B69B4A0A3A1720003C02F2</string>
 								<string>E4B69E1C0A3A1BDC003C02F2</string>
 								<string>BB4B018C10F6955C006C3DED</string>
+								<string>3CF42B4613B53A68003B2CA0</string>
 								<string>3CE6843B13B3224900826E3D</string>
 								<string>3CE6843F13B3224900826E3D</string>
 								<string>3CE6841613B321F400826E3D</string>
@@ -274,7 +275,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
+									<integer>11</integer>
 									<integer>3</integer>
 									<integer>0</integer>
 								</array>
@@ -317,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BoxDropper.h</string>
+								<string>testApp.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,27 +326,28 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BoxDropper.h</string>
+										<string>testApp.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3CF42C2113B53D57003B2CA0</string>
+										<string>3CF42C6513B5431E003B2CA0</string>
 										<key>history</key>
 										<array>
 											<string>3CE6845613B323F300826E3D</string>
 											<string>3CF42C1113B53D57003B2CA0</string>
 											<string>3CF42C1313B53D57003B2CA0</string>
-											<string>3CF42C1513B53D57003B2CA0</string>
 											<string>3CF42C1613B53D57003B2CA0</string>
-											<string>3CF42C1813B53D57003B2CA0</string>
-											<string>3CF42C1913B53D57003B2CA0</string>
-											<string>3CF42C1A13B53D57003B2CA0</string>
-											<string>3CF42C1B13B53D57003B2CA0</string>
-											<string>3CF42C1C13B53D57003B2CA0</string>
-											<string>3CF42C1D13B53D57003B2CA0</string>
-											<string>3CF42C1E13B53D57003B2CA0</string>
-											<string>3CF42C1F13B53D57003B2CA0</string>
-											<string>3CF42C2013B53D57003B2CA0</string>
+											<string>3CF42C2913B53F46003B2CA0</string>
+											<string>3CF42C2A13B53F46003B2CA0</string>
+											<string>3CF42C2C13B53F46003B2CA0</string>
+											<string>3CF42C2D13B53F46003B2CA0</string>
+											<string>3CF42C2E13B53F46003B2CA0</string>
+											<string>3CF42C2F13B53F46003B2CA0</string>
+											<string>3CF42C3013B53F46003B2CA0</string>
+											<string>3CF42C3113B53F46003B2CA0</string>
+											<string>3CF42C3213B53F46003B2CA0</string>
+											<string>3CF42C5713B54273003B2CA0</string>
+											<string>3CF42C5813B54273003B2CA0</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -543,6 +545,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>3CF42C6613B5431E003B2CA0</string>
+		<string>3CF42C3713B53F46003B2CA0</string>
+		<string>3CF42C3813B53F46003B2CA0</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>3C99C63713B3213C002A351C</string>
 		<string>/Volumes/EIN/DocumentsREAL/Development/OpenFrameworks/of_preRelease_v0062_osxSL_FAT/apps/odbol/light_scatterer/light_scatterer.xcodeproj</string>
@@ -586,8 +592,6 @@
 							<string>328pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -917,7 +921,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>3CE6846313B323F300826E3D</string>
+				<string>3CF42C3513B53F46003B2CA0</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

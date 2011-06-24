@@ -240,8 +240,8 @@ void testApp::draw(){
 			*/
 	
 	
-			//boxes
-			boxes.draw(); 
+	
+			drawBoxes();
 	
 		glPopMatrix();
 	
@@ -332,8 +332,7 @@ void testApp::draw(){
 		 */	
 	
 	
-		//boxes
-		boxes.draw(); 
+		drawBoxes();
 	
 	glPopMatrix();
 	
@@ -373,6 +372,15 @@ void testApp::draw(){
 						   "a and s : move on the Y \n "
 						   "q and w : move on the Z \n ", 2, 40);
 	 
+	glPopMatrix();
+}
+
+void testApp::drawBoxes() {
+	//boxes
+	glPushMatrix();
+	glScalef(1, -1, 1);           // invert Y axis so increasing Y goes back up.
+	glTranslatef(-ofGetWidth() / 2, -ofGetHeight() / 2, 0);       // shift origin up to upper-left corner.
+	boxes.draw(); 
 	glPopMatrix();
 }
 

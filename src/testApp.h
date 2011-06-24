@@ -9,6 +9,9 @@
 
 #include "lightScattering.h"
 
+
+#include "BoxDropper.h"
+
 class testApp : public ofBaseApp{
 
 	public:
@@ -42,6 +45,10 @@ class testApp : public ofBaseApp{
 	GLuint dListA;
 	GLuint dListB;
 
+	
+	//boxes
+private: 
+	BoxDropper boxes;
 };
 
 #endif

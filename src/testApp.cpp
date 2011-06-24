@@ -64,6 +64,11 @@ void testApp::setup(){
 		glutSolidSphere(20.0f, 50, 50);
 	glEndList();
 	*/
+	
+	
+	
+	//init boxes
+	boxes.setup(); 
 }
 
 //--------------------------------------------------------------
@@ -135,6 +140,10 @@ void testApp::update(){
 	// Supply a slight ambient light so the objects can be seen
 	GLfloat  ambientLight[] = { ambientLightR, ambientLightG, ambientLightB, 1.0f};
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
+	
+	
+	//init boxes
+	boxes.update(); 
 }
 
 //--------------------------------------------------------------
@@ -230,6 +239,10 @@ void testApp::draw(){
 			glPopMatrix();
 			*/
 	
+	
+			//boxes
+			boxes.draw(); 
+	
 		glPopMatrix();
 	
 
@@ -317,6 +330,11 @@ void testApp::draw(){
 			//glCallList(dListB);
 		glPopMatrix();
 		 */	
+	
+	
+		//boxes
+		boxes.draw(); 
+	
 	glPopMatrix();
 	
 	//3 - Switch to Orthogonal projection and blend the FBO with the framebuffer, 
@@ -487,7 +505,7 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-
+	boxes.dropBoxInCol(ofRandom(0, NUM_COLS));
 }
 
 //--------------------------------------------------------------

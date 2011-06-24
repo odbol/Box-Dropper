@@ -2,6 +2,7 @@
 #include "ofxShader.h" 
 #include "ofxFBOTexture.h"
 
+
 class lightScattering{
 	
 public:
@@ -29,5 +30,4 @@ public:
 	float uniformDecay;
 	float uniformDensity;
 	float uniformWeight;
-	
 };

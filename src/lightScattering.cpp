@@ -24,6 +24,7 @@ void lightScattering::setup(int fboW, int fboH){
 	uniformDecay = 1.0f;
 	uniformDensity = 0.84f;
 	uniformWeight = 5.65f;	
+	
 }
 
 //--------------------------------------------------------------

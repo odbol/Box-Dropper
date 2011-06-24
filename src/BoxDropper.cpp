@@ -21,15 +21,15 @@ void BoxDropper::setup() {
 	
 	box2d.init();
 	box2d.setGravity(0, 10);
-	box2d.createFloor();
+	//box2d.createFloor();
 	box2d.checkBounds(true);
 	box2d.setFPS(30.0);
 	
 	
 	
 	//for boxes
-	mass = 50.0;
-	bounce = 0.03;
+	mass = 5000.0;
+	bounce = 0.0;
 	
 	boxWidth = (int)((float)ofGetWidth() / NUM_COLS);
 	boxHeight = 100;
@@ -51,20 +51,44 @@ void BoxDropper::setup() {
 		}
 	}
 	
-	// lets draw a simple lanscape
-	ofPoint p(40, 400);
-	int segs = 50;
-	lineStrip.setWorld(box2d.getWorld());
-	lineStrip.clear();
-	for(int i=0; i<segs; i++) {
-		p.x += 15;
-		lineStrip.addPoint(p.x, p.y+sin(i*ofRandom(0.01, 0.5))*30);
-	}
-	lineStrip.createShape();
-	
-	
+	floorHeight = ofGetHeight() + 20;
+	setFloor(true);
 	
 	//blur.setup(ofGetWidth(), ofGetHeight());
+}
+
+void BoxDropper::setFloor(bool isEnabled) {
+	
+	lineStrip.setPhysics(0, 0,0);
+	lineStrip.setWorld(box2d.getWorld());
+	lineStrip.clear();
+
+
+	if (isEnabled) {
+		// lets draw a simple lanscape
+
+		lineStrip.addPoint(-WALL_PADDING, 0);
+		lineStrip.addPoint(-WALL_PADDING, floorHeight);
+		
+		//draw jagged floor
+		ofPoint p(-WALL_PADDING, floorHeight);
+		const int segs = 50;
+		const int inc = (ofGetWidth() + WALL_PADDING) / segs;
+		for(int i=0; i < segs; i++) {
+			p.x += inc;
+			lineStrip.addPoint(p.x, p.y+sin(i*ofRandom(0.01, 0.5))*30);
+		}
+		
+		lineStrip.addPoint(ofGetWidth() + WALL_PADDING, floorHeight);
+		lineStrip.addPoint(ofGetWidth() + WALL_PADDING, 0);
+		
+		/*
+		
+		 */
+		lineStrip.createShape();
+	}
+	
+	isFloorEnabled = isEnabled;
 }
 
 //--------------------------------------------------------------

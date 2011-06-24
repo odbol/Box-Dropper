@@ -65,7 +65,7 @@ void testApp::setup(){
 	glEndList();
 	*/
 	
-	
+	spotCutOff = 80;
 	
 	//init boxes
 	boxes.setup(); 
@@ -152,7 +152,7 @@ void testApp::updateSpot(){
 	//spot direction
 	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direction);
 	//angle of the cone light emitted by the spot : value between 0 to 180
-	//glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, spotCutOff);
+	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, spotCutOff);
 }
 
 //--------------------------------------------------------------
@@ -493,6 +493,9 @@ void testApp::keyPressed(int key){
 		//xSpotDir, ySpotDir, zOffset
 		case ',': xSpotDir+=.1f; break;
 		case '.': xSpotDir-=.1f; break;
+			
+		case 'c': spotCutOff+=10; break;
+		case 'f': boxes.setFloor(!boxes.isFloorEnabled);
 	}
 }
 

@@ -2,6 +2,7 @@
 #define BOXDROPPER
 
 #define NUM_COLS 24
+#define WALL_PADDING 5
 
 
 #pragma once
@@ -91,6 +92,13 @@ public:
 	
 	//removed ofBaseApp
 	int mouseX, mouseY;
+	
+	
+	
+	//for floor
+	void setFloor(bool isEnabled);
+	bool isFloorEnabled;
+	int floorHeight;
 };
 
 #endif

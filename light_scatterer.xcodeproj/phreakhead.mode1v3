@@ -275,7 +275,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>11</integer>
+									<integer>6</integer>
 									<integer>3</integer>
 									<integer>0</integer>
 								</array>
@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>testApp.cpp</string>
+								<string>BoxDropper.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>testApp.cpp</string>
+										<string>BoxDropper.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3CF42C6513B5431E003B2CA0</string>
+										<string>3CF42CAD13B54CDC003B2CA0</string>
 										<key>history</key>
 										<array>
 											<string>3CE6845613B323F300826E3D</string>
@@ -339,15 +339,18 @@
 											<string>3CF42C1613B53D57003B2CA0</string>
 											<string>3CF42C2913B53F46003B2CA0</string>
 											<string>3CF42C2A13B53F46003B2CA0</string>
-											<string>3CF42C2C13B53F46003B2CA0</string>
-											<string>3CF42C2D13B53F46003B2CA0</string>
-											<string>3CF42C2E13B53F46003B2CA0</string>
-											<string>3CF42C2F13B53F46003B2CA0</string>
-											<string>3CF42C3013B53F46003B2CA0</string>
-											<string>3CF42C3113B53F46003B2CA0</string>
-											<string>3CF42C3213B53F46003B2CA0</string>
-											<string>3CF42C5713B54273003B2CA0</string>
-											<string>3CF42C5813B54273003B2CA0</string>
+											<string>3CF42C6F13B545F4003B2CA0</string>
+											<string>3CF42C7013B545F4003B2CA0</string>
+											<string>3CF42C7A13B546DE003B2CA0</string>
+											<string>3CF42C9013B549CF003B2CA0</string>
+											<string>3CF42C9A13B54B16003B2CA0</string>
+											<string>3CF42C9B13B54B16003B2CA0</string>
+											<string>3CF42C9D13B54B16003B2CA0</string>
+											<string>3CF42CA413B54C7D003B2CA0</string>
+											<string>3CF42CA513B54C7D003B2CA0</string>
+											<string>3CF42CA613B54C7D003B2CA0</string>
+											<string>3CF42CAB13B54CDC003B2CA0</string>
+											<string>3CF42CAC13B54CDC003B2CA0</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -545,7 +548,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3CF42C6613B5431E003B2CA0</string>
+		<string>3CF42CAE13B54CDC003B2CA0</string>
 		<string>3CF42C3713B53F46003B2CA0</string>
 		<string>3CF42C3813B53F46003B2CA0</string>
 		<string>1C78EAAD065D492600B07095</string>

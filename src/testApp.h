@@ -46,6 +46,8 @@ class testApp : public ofBaseApp{
 	GLuint dListB;
 
 	
+	int spotCutOff;
+	
 	//boxes
 private: 
 	BoxDropper boxes;

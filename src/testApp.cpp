@@ -65,7 +65,20 @@ void testApp::setup(){
 	glEndList();
 	*/
 	
-	spotCutOff = 80;
+	spotCutOff = 50.0f;
+	spotExponent = 15.0f;
+	sphereEnabled = false;
+	
+#ifdef DEBUG
+	mouseMode = 0;
+
+#endif		
+	
+	//init scatterer
+	lightScatter.uniformExposure = 0.0156f;
+	lightScatter.uniformDecay = 0.9947f;
+	lightScatter.uniformDensity = 1.14f;
+	lightScatter.uniformWeight = 6.6f;
 	
 	//init boxes
 	boxes.setup(); 
@@ -103,9 +116,9 @@ void testApp::setupRC()
 	
     // Specific spot effects
     // Cut off angle is 60 degrees
-    glLightf(GL_LIGHT0,GL_SPOT_CUTOFF,50.0f);
+    glLightf(GL_LIGHT0,GL_SPOT_CUTOFF,spotCutOff);
 	//exponent propertie defines the concentration of the light
-	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 15.0f);
+	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, spotExponent);
 	
 	//light attenuation (default values used here : no attenuation with the distance)
 	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1.0f);
@@ -153,7 +166,11 @@ void testApp::updateSpot(){
 	glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direction);
 	//angle of the cone light emitted by the spot : value between 0 to 180
 	glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, spotCutOff);
-}
+	
+	//exponent propertie defines the concentration of the light
+	glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, spotExponent);
+}	
+
 
 //--------------------------------------------------------------
 void testApp::draw(){
@@ -220,15 +237,17 @@ void testApp::draw(){
 			
 			
 			// Set material color and draw a sphere in the middle
-			glColor3ub(0, 0, 255);
+			if (sphereEnabled) {
+				glColor3ub(0, 0, 255);
 			
-			if(iTess == MODE_VERYLOW)
-				glutSolidSphere(30.0f, 7, 7);
-			else 
-				if(iTess == MODE_MEDIUM)
-					glutSolidSphere(30.0f, 15, 15);
-				else //  iTess = MODE_MEDIUM;
-					glutSolidSphere(30.0f, 50, 50);
+				if(iTess == MODE_VERYLOW)
+					glutSolidSphere(30.0f, 7, 7);
+				else 
+					if(iTess == MODE_MEDIUM)
+						glutSolidSphere(30.0f, 15, 15);
+					else //  iTess = MODE_MEDIUM;
+						glutSolidSphere(30.0f, 50, 50);
+			}
 	
 			//glCallList(dListA);
 			/*
@@ -263,7 +282,9 @@ void testApp::draw(){
 	
 		setupViewer();
 		glDisable(GL_LIGHTING);
+#ifdef DEBUG	
 		drawAxis();	
+#endif	
 		//glTranslatef(ofGetWidth()/2, ofGetHeight()/2, 500.0f);
 		
 		glEnable(GL_LIGHTING);
@@ -310,16 +331,17 @@ void testApp::draw(){
 		
 		
 		// Set material color and draw a sphere in the middle
-		glColor3ub(0, 0, 255);
-		
-		if(iTess == MODE_VERYLOW)
-			glutSolidSphere(30.0f, 7, 7);
-		else 
-			if(iTess == MODE_MEDIUM)
-				glutSolidSphere(30.0f, 15, 15);
-			else //  iTess = MODE_MEDIUM;
-				glutSolidSphere(30.0f, 50, 50);
-	
+		if (sphereEnabled) {
+			glColor3ub(0, 0, 255);
+			
+			if(iTess == MODE_VERYLOW)
+				glutSolidSphere(30.0f, 7, 7);
+			else 
+				if(iTess == MODE_MEDIUM)
+					glutSolidSphere(30.0f, 15, 15);
+				else //  iTess = MODE_MEDIUM;
+					glutSolidSphere(30.0f, 50, 50);
+		}
 	
 		//glCallList(dListA);
 		
@@ -339,7 +361,7 @@ void testApp::draw(){
 	//3 - Switch to Orthogonal projection and blend the FBO with the framebuffer, 
 	//activating the shader in order to generate the "God's ray" effect .
 	//Paint the light scaterring effect
-	lightScatter.setLightParams(mouseX, mouseY);
+	lightScatter.setLightParams(scatterX, scatterY);
 	lightScatter.beginRender();
 		ofSetColor(255, 255, 255);
 		fboLight.draw(0, 0);
@@ -348,12 +370,13 @@ void testApp::draw(){
 	lightScatter.draw(0, 0, ofGetWidth(),ofGetHeight(), true);
 
 	//Debug details
+#ifdef DEBUG
 	glDisable(GL_LIGHTING);
 	glPushMatrix();
 		ofTranslate(0.0f, 0.0f, 2.0f);
 		ofSetColor(255, 255, 255, 255);
 		ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 10, 20);
-		
+	ofDrawBitmapString("light exp: [" + ofToString(lightScatter.uniformExposure) + "], decay: " + ofToString(lightScatter.uniformDecay) + ", density: " + ofToString(lightScatter.uniformDensity) + ", wight: " + ofToString(lightScatter.uniformWeight), 10, 40);
 		ofDrawBitmapString(" move the light scattering source with the mouse \n"
 						   "\n"
 						   " arrows to move light spot \n "
@@ -370,9 +393,10 @@ void testApp::draw(){
 						   "\n"
 						   " z and x : move on the X \n "
 						   "a and s : move on the Y \n "
-						   "q and w : move on the Z \n ", 2, 40);
+						   "q and w : move on the Z \n ", 2, 60);
 	 
 	glPopMatrix();
+#endif
 }
 
 void testApp::drawBoxes() {
@@ -495,7 +519,14 @@ void testApp::keyPressed(int key){
 		case '.': xSpotDir-=.1f; break;
 			
 		case 'c': spotCutOff+=10; break;
-		case 'f': boxes.setFloor(!boxes.isFloorEnabled);
+		case 'f': boxes.setFloor(!boxes.isFloorEnabled); break;
+			
+#ifdef DEBUG
+		case '/':	
+			mouseMode = (mouseMode + 1) % 3;
+			break;
+#endif			
+		
 	}
 }
 
@@ -506,7 +537,26 @@ void testApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y ){
+	//spotCutOff = ((float)mouseX / (float)ofGetWidth()) * 180.0f;
+	//spotExponent = ((float)mouseY / (float)ofGetHeight()) * 50.0f;
 
+#ifdef DEBUG	
+	switch (mouseMode) {
+		case 1:
+			lightScatter.uniformExposure = ((float)mouseX / (float)ofGetWidth() * 10.0f) * 0.0034f;
+			lightScatter.uniformDecay = ((float)mouseY / (float)ofGetHeight() * 2.0f) * 1.0f;
+			break;
+		case 2:
+			lightScatter.uniformDensity = ((float)mouseX / (float)ofGetWidth() * 10.0f) * 0.84f;
+			lightScatter.uniformWeight = ((float)mouseY / (float)ofGetHeight() * 10.0f) * 5.65f;
+			break;	
+		default:
+			scatterX = mouseX;
+			scatterY = mouseY;
+
+			break;
+	}
+#endif		
 }
 
 //--------------------------------------------------------------

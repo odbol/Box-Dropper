@@ -1,6 +1,8 @@
 #ifndef _TEST_APP
 #define _TEST_APP
 
+//comment out to disable debug stamtents
+#define DEBUG
 
 #include "ofMain.h"
 #include "ofxFBOTexture.h"
@@ -46,12 +48,26 @@ class testApp : public ofBaseApp{
 	GLuint dListB;
 
 	
-	int spotCutOff;
+	float spotCutOff;
+	float spotExponent;
+	
+	//position of the light ray origin
+	int scatterX, scatterY;
+	
+	
+	bool sphereEnabled;
+	
 	
 	//boxes
 private: 
 	BoxDropper boxes;
 	void drawBoxes();
+	
+	
+#ifdef DEBUG
+	
+	int mouseMode;
+#endif
 };
 
 #endif

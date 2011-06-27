@@ -180,7 +180,7 @@ void BoxDropper::dropBox(int x, int y) {
 	rect.color.b = 0.0;
 	rect.color.a = 1.0;
 
-	rect.setPhysics(mass, bounce, 0.1);
+	rect.setPhysics(mass, bounce, 0.5);
 	rect.setup(box2d.getWorld(), x, y, boxWidth, boxHeight);
 	boxes.push_back(rect);
 }

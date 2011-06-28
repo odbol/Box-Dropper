@@ -2,6 +2,9 @@
 
 #include "testApp.h"
 
+// Define bytecount in file scope.
+static void GlowBox::setIs3D(bool enable3D);
+
 GLfloat		xrot,yrot,zrot,								// X, Y & Z Rotation
 xspeed,yspeed,zspeed=0;									// X, Y & Z Spin Speed
 float moveX,moveY,moveZ=0;								// X, Y & Z Position
@@ -71,8 +74,10 @@ void testApp::setup(){
 	
 #ifdef DEBUG
 	mouseMode = 0;
-
+	sphereEnabled = true;
 #endif		
+	
+	GlowBox::setIs3D(false);
 	
 	//init scatterer
 	lightScatter.uniformExposure = 0.0156f;
@@ -376,7 +381,8 @@ void testApp::draw(){
 		ofTranslate(0.0f, 0.0f, 2.0f);
 		ofSetColor(255, 255, 255, 255);
 		ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 10, 20);
-	ofDrawBitmapString("light exp: [" + ofToString(lightScatter.uniformExposure) + "], decay: " + ofToString(lightScatter.uniformDecay) + ", density: " + ofToString(lightScatter.uniformDensity) + ", wight: " + ofToString(lightScatter.uniformWeight), 10, 40);
+		ofDrawBitmapString("spot pos: [" + ofToString(lightPos[0]) + ","+ ofToString(lightPos[1]) + ","+ ofToString(lightPos[2]) + "]", 10, 40);
+		ofDrawBitmapString("light exp: [" + ofToString(lightScatter.uniformExposure) + "], decay: " + ofToString(lightScatter.uniformDecay) + ", density: " + ofToString(lightScatter.uniformDensity) + ", wight: " + ofToString(lightScatter.uniformWeight), 10, 40);
 		ofDrawBitmapString(" move the light scattering source with the mouse \n"
 						   "\n"
 						   " arrows to move light spot \n "
@@ -517,6 +523,8 @@ void testApp::keyPressed(int key){
 		//xSpotDir, ySpotDir, zOffset
 		case ',': xSpotDir+=.1f; break;
 		case '.': xSpotDir-=.1f; break;
+		case '<': zOffset += 1.0f; break;
+		case '>': zOffset -= 1.0f; break;
 			
 		case 'c': spotCutOff+=10; break;
 		case 'f': boxes.setFloor(!boxes.isFloorEnabled); break;

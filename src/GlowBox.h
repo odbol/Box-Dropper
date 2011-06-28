@@ -22,7 +22,27 @@ public:
 	ofColor color;
 	ofColor stroke;
 	
+	float width, height;
+	
+	//shape
+	static bool is3D;
+	static void setIs3D(bool enable3D);
+	
 	void draw();
+	/*
+	 
+	 float boxZOffset;
+
+	void setup(b2World * b2dworld, float x, float y, float z, float w, float h, bool isFixed=false) {
+		boxZOffset = z;		
+		
+		setup(b2dworld, x, y, w, h, isFixed);
+	}
+	 */
+	
+	
+	void setup(b2World * b2dworld, float x, float y, float w, float h, bool isFixed=false);
+	
 };
 
 #endif

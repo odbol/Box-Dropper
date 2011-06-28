@@ -176,9 +176,9 @@ void BoxDropper::dropBoxInCol(int col) {
 void BoxDropper::dropBox(int x, int y) {
 
 	GlowBox rect;
-	rect.color.r = 1.0 * 255.0f;
-	rect.color.g = 0.0 * 255.0f;
-	rect.color.b = 0.0 * 255.0f;
+	rect.color.r = 0.0 * 255.0f;
+	rect.color.g = 0.1 * 255.0f;
+	rect.color.b = 0.9 * 255.0f;
 	rect.color.a = 1.0 * 255.0f;
 	
 	rect.stroke.r = 1.0 * 255.0f;

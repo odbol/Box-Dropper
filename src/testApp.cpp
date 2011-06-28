@@ -46,6 +46,10 @@ int iTess = MODE_VERYLOW;
 void testApp::setup(){	
 	ofBackground(0, 0, 0);
 	ofSetVerticalSync(true);
+
+#ifndef DEBUG
+	ofHideCursor();
+#endif	
 	
 	lightScatter.setup(ofGetWidth()/OFF_SCREEN_RENDER_RATIO, ofGetHeight()/OFF_SCREEN_RENDER_RATIO);
 	fboLight.allocate(ofGetWidth(), ofGetHeight(), true);
@@ -606,13 +610,13 @@ void testApp::mouseMoved(int x, int y ){
 			break;	
 		default:
 			scatterX = mouseX;
-			scatterY = mouseY;
+			scatterY = ofGetHeight() - mouseY;
 
 			break;
 	}
 #else
 	scatterX = mouseX;
-	scatterY = mouseY;
+	scatterY = ofGetHeight() - mouseY;
 #endif		
 }
 

@@ -274,7 +274,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>11</integer>
+									<integer>13</integer>
 									<integer>3</integer>
 									<integer>0</integer>
 								</array>
@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3C71B5D713BA6BFE00CF4D67</string>
+										<string>3C71B6B313BA828B00CF4D67</string>
 										<key>history</key>
 										<array>
 											<string>3CE6845613B323F300826E3D</string>
@@ -350,7 +350,6 @@
 											<string>3C2B00E413B95461006D8A34</string>
 											<string>3C2B00E513B95461006D8A34</string>
 											<string>3C2B00E613B95461006D8A34</string>
-											<string>3C2B00E913B95461006D8A34</string>
 											<string>3C2B011C13B955CF006D8A34</string>
 											<string>3C2B017E13B96148006D8A34</string>
 											<string>3C2B019513B96296006D8A34</string>
@@ -362,22 +361,30 @@
 											<string>3C2B034D13B98FE8006D8A34</string>
 											<string>3C2B034E13B98FE8006D8A34</string>
 											<string>3C5C010D13B9A3780071D769</string>
-											<string>3C5C011913B9A4B10071D769</string>
 											<string>3C71B56913BA5CD500CF4D67</string>
-											<string>3C71B57913BA61F700CF4D67</string>
 											<string>3C71B57A13BA61F700CF4D67</string>
 											<string>3C71B57C13BA61F700CF4D67</string>
 											<string>3C71B57D13BA61F700CF4D67</string>
-											<string>3C71B57E13BA61F700CF4D67</string>
 											<string>3C71B59113BA66A000CF4D67</string>
-											<string>3C71B59213BA66A000CF4D67</string>
-											<string>3C71B59313BA66A000CF4D67</string>
-											<string>3C71B59413BA66A000CF4D67</string>
-											<string>3C71B59513BA66A000CF4D67</string>
-											<string>3C71B5B413BA69BC00CF4D67</string>
-											<string>3C71B5CF13BA6B7E00CF4D67</string>
-											<string>3C71B5D513BA6BFE00CF4D67</string>
-											<string>3C71B5D613BA6BFE00CF4D67</string>
+											<string>3C71B5F413BA775600CF4D67</string>
+											<string>3C71B5F613BA775600CF4D67</string>
+											<string>3C71B5FB13BA775600CF4D67</string>
+											<string>3C71B5FC13BA775600CF4D67</string>
+											<string>3C71B66C13BA7EB600CF4D67</string>
+											<string>3C71B67C13BA7EE600CF4D67</string>
+											<string>3C71B68213BA7F2B00CF4D67</string>
+											<string>3C71B69C13BA814D00CF4D67</string>
+											<string>3C71B69E13BA814D00CF4D67</string>
+											<string>3C71B69F13BA814D00CF4D67</string>
+											<string>3C71B6A013BA814D00CF4D67</string>
+											<string>3C71B6A113BA814D00CF4D67</string>
+											<string>3C71B6A813BA817A00CF4D67</string>
+											<string>3C71B6AD13BA828B00CF4D67</string>
+											<string>3C71B6AE13BA828B00CF4D67</string>
+											<string>3C71B6AF13BA828B00CF4D67</string>
+											<string>3C71B6B013BA828B00CF4D67</string>
+											<string>3C71B6B113BA828B00CF4D67</string>
+											<string>3C71B6B213BA828B00CF4D67</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -575,7 +582,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3C71B5D813BA6BFE00CF4D67</string>
+		<string>3C71B6B413BA828B00CF4D67</string>
 		<string>3C71B5CA13BA6A8200CF4D67</string>
 		<string>3C71B5CB13BA6A8200CF4D67</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -600,12 +607,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>PaletteManager.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

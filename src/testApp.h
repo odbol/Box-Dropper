@@ -14,6 +14,8 @@
 
 #include "BoxDropper.h"
 
+#include "PaletteManager.h"
+
 
 #ifdef IS_FFGL
 
@@ -70,6 +72,8 @@ class testApp : public ofBaseApp{
 	
 	bool sphereEnabled;
 	
+	bool isMonochrome;
+	
 	
 	//boxes
 private: 
@@ -81,6 +85,10 @@ private:
 	
 	int mouseMode;
 #endif
+	
+	
+	//palette
+	PaletteManager palettes;
 };
 
 	

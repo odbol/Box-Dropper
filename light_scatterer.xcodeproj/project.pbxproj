@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3C71B5BE13BA69DA00CF4D67 /* ofxArgs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C71B5BC13BA69DA00CF4D67 /* ofxArgs.cpp */; };
+		3C71B5DB13BA6E4D00CF4D67 /* PaletteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C71B5DA13BA6E4D00CF4D67 /* PaletteManager.cpp */; };
+		3C71B66213BA7B9600CF4D67 /* ofxDirList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C71B66013BA7B9600CF4D67 /* ofxDirList.cpp */; };
 		3CE6840613B3218B00826E3D /* lightScattering.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6840213B3218B00826E3D /* lightScattering.cpp */; };
 		3CE6841F13B321F400826E3D /* ofxFBOTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6841713B321F400826E3D /* ofxFBOTexture.cpp */; };
 		3CE6842013B321F400826E3D /* ofxShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6841813B321F400826E3D /* ofxShader.cpp */; };
@@ -133,6 +135,12 @@
 		3C71B5BA13BA69DA00CF4D67 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		3C71B5BC13BA69DA00CF4D67 /* ofxArgs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxArgs.cpp; sourceTree = "<group>"; };
 		3C71B5BD13BA69DA00CF4D67 /* ofxArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxArgs.h; sourceTree = "<group>"; };
+		3C71B5D913BA6E4D00CF4D67 /* PaletteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteManager.h; sourceTree = "<group>"; };
+		3C71B5DA13BA6E4D00CF4D67 /* PaletteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PaletteManager.cpp; sourceTree = "<group>"; };
+		3C71B65D13BA7B9600CF4D67 /* Instructions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Instructions.txt; sourceTree = "<group>"; };
+		3C71B65E13BA7B9600CF4D67 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
+		3C71B66013BA7B9600CF4D67 /* ofxDirList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxDirList.cpp; sourceTree = "<group>"; };
+		3C71B66113BA7B9600CF4D67 /* ofxDirList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxDirList.h; sourceTree = "<group>"; };
 		3CE6840213B3218B00826E3D /* lightScattering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lightScattering.cpp; sourceTree = "<group>"; };
 		3CE6840313B3218B00826E3D /* lightScattering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lightScattering.h; sourceTree = "<group>"; };
 		3CE6841713B321F400826E3D /* ofxFBOTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFBOTexture.cpp; sourceTree = "<group>"; };
@@ -347,6 +355,34 @@
 			children = (
 				3C71B5BC13BA69DA00CF4D67 /* ofxArgs.cpp */,
 				3C71B5BD13BA69DA00CF4D67 /* ofxArgs.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		3C71B65B13BA7B9600CF4D67 /* ofxDirList */ = {
+			isa = PBXGroup;
+			children = (
+				3C71B65C13BA7B9600CF4D67 /* doc */,
+				3C71B65E13BA7B9600CF4D67 /* install.xml */,
+				3C71B65F13BA7B9600CF4D67 /* src */,
+			);
+			name = ofxDirList;
+			path = ../../../addons/ofxDirList;
+			sourceTree = SOURCE_ROOT;
+		};
+		3C71B65C13BA7B9600CF4D67 /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				3C71B65D13BA7B9600CF4D67 /* Instructions.txt */,
+			);
+			path = doc;
+			sourceTree = "<group>";
+		};
+		3C71B65F13BA7B9600CF4D67 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3C71B66013BA7B9600CF4D67 /* ofxDirList.cpp */,
+				3C71B66113BA7B9600CF4D67 /* ofxDirList.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -623,6 +659,7 @@
 		BB4B018C10F6955C006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				3C71B65B13BA7B9600CF4D67 /* ofxDirList */,
 				3C71B5B913BA69DA00CF4D67 /* ofxArgs */,
 				3CF42B4613B53A68003B2CA0 /* ofxBox2d */,
 				3CE6843B13B3224900826E3D /* ofxThread */,
@@ -824,6 +861,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				3C71B5D913BA6E4D00CF4D67 /* PaletteManager.h */,
+				3C71B5DA13BA6E4D00CF4D67 /* PaletteManager.cpp */,
 				3CF42BE513B53ADB003B2CA0 /* GlowBox.cpp */,
 				3CF42BE613B53ADB003B2CA0 /* GlowBox.h */,
 				3CF42B3B13B534FC003B2CA0 /* BoxDropper.cpp */,
@@ -1052,6 +1091,8 @@
 				3CF42BE213B53A68003B2CA0 /* ofxBox2d.cpp in Sources */,
 				3CF42BE713B53ADB003B2CA0 /* GlowBox.cpp in Sources */,
 				3C71B5BE13BA69DA00CF4D67 /* ofxArgs.cpp in Sources */,
+				3C71B5DB13BA6E4D00CF4D67 /* PaletteManager.cpp in Sources */,
+				3C71B66213BA7B9600CF4D67 /* ofxDirList.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

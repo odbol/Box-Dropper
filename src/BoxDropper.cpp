@@ -11,6 +11,11 @@ void BoxDropper::setup() {
 	mouseX = 0;
 	mouseY = 0;
 	
+	strokeColor.r = 1.0 * 255.0f;
+	strokeColor.g = 0.0 * 255.0f;
+	strokeColor.b = 1.0 * 255.0f;
+	strokeColor.a = 1.0 * 255.0f;
+	
 	
 	ofSetVerticalSync(true);
 	ofBackground(20, 20, 20);
@@ -176,19 +181,30 @@ void BoxDropper::dropBoxInCol(int col) {
 void BoxDropper::dropBox(int x, int y) {
 
 	GlowBox rect;
+		/*
 	rect.color.r = 0.0 * 255.0f;
 	rect.color.g = 0.1 * 255.0f;
 	rect.color.b = 0.9 * 255.0f;
 	rect.color.a = 1.0 * 255.0f;
 	
+
 	rect.stroke.r = 1.0 * 255.0f;
 	rect.stroke.g = 0.0 * 255.0f;
 	rect.stroke.b = 1.0 * 255.0f;
 	rect.stroke.a = 1.0 * 255.0f;
+	 */
+	
+	rect.color = strokeColor;
+	rect.stroke = strokeColor;
+	
 
 	rect.setPhysics(mass, bounce, 0.5);
 	rect.setup(box2d.getWorld(), x, y, boxWidth, boxHeight);
 	boxes.push_back(rect);
+}
+
+void BoxDropper::setColor(ofColor stroke) {
+	strokeColor = stroke;
 }
 
 //--------------------------------------------------------------

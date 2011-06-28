@@ -50,6 +50,7 @@ void testApp::setup(){
 #ifndef DEBUG
 	ofHideCursor();
 #endif	
+
 	
 	lightScatter.setup(ofGetWidth()/OFF_SCREEN_RENDER_RATIO, ofGetHeight()/OFF_SCREEN_RENDER_RATIO);
 	fboLight.allocate(ofGetWidth(), ofGetHeight(), true);
@@ -91,6 +92,11 @@ void testApp::setup(){
 	//init boxes
 	boxes.setup(); 
 	
+	
+	
+	//load palettes
+	//boxes.setColor(palettes.getRandomPalette(int alphaVal));
+	boxes.setColor(palettes.getRandomPalette(250));
 	
 	
 	
@@ -578,6 +584,7 @@ void testApp::keyPressed(int key){
 			
 		case 'c': spotCutOff+=10; break;
 		case 'f': boxes.setFloor(!boxes.isFloorEnabled); break;
+		case 'p': palettes.togglePalette(); break;
 			
 #ifdef DEBUG
 		case '/':	
@@ -627,6 +634,14 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
+	
+	
+	//load palettes
+	if (!isMonochrome) {
+		boxes.setColor(palettes.getRandomPalette(250));
+	}
+	
+	
 	boxes.dropBoxInCol(ofRandom(0, NUM_COLS));
 }
 

@@ -99,6 +99,10 @@ public:
 	void setFloor(bool isEnabled);
 	bool isFloorEnabled;
 	int floorHeight;
+	
+	//palettes
+	ofColor strokeColor;
+	void setColor(ofColor stroke);
 };
 
 #endif

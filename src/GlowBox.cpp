@@ -16,8 +16,10 @@ void GlowBox::setup(b2World * b2dworld, float x, float y, float w, float h, bool
 	ofxBox2dRect::setup(b2dworld, x, y, w, h, isFixed);
 }
 
+bool GlowBox::is3D;
+
 void GlowBox::setIs3D(bool enable3D) {
-	is3D = enable3D;
+	GlowBox::is3D = enable3D;
 	
 	if (enable3D) {
 		glDepthFunc(GL_LEQUAL);							// Type Of Depth Testing
@@ -56,7 +58,7 @@ void GlowBox::draw() {
 
 	glColor4f(color.r, color.g, color.b, v);
 	
-	if (is3D) {
+	if (GlowBox::is3D) {
 		glutSolidCube(width);
 	}
 	else {

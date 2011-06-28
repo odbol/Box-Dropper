@@ -2,8 +2,6 @@
 
 #include "testApp.h"
 
-// Define bytecount in file scope.
-static void GlowBox::setIs3D(bool enable3D);
 
 GLfloat		xrot,yrot,zrot,								// X, Y & Z Rotation
 xspeed,yspeed,zspeed=0;									// X, Y & Z Spin Speed
@@ -71,6 +69,7 @@ void testApp::setup(){
 	spotCutOff = 50.0f;
 	spotExponent = 15.0f;
 	sphereEnabled = false;
+
 	
 #ifdef DEBUG
 	mouseMode = 0;
@@ -87,6 +86,43 @@ void testApp::setup(){
 	
 	//init boxes
 	boxes.setup(); 
+	
+	
+	
+	
+#ifdef IS_FFGL
+/*	
+	//add parameters
+	//rot
+	addFloatParameter("rot x",&xrot,0.0,360.0);
+	addFloatParameter("rot y",&yrot,0.0,360.0);
+	
+	//light
+	addFloatParameter("scatterX",&scatterX,0.0,640.0);
+	addFloatParameter("scatterY",&scatterY,0.0,480.0);
+	
+	addFloatParameter("exposure",&lightScatter.uniformExposure,0.0001,2.0);
+	addFloatParameter("Decay",&lightScatter.uniformDecay,0.001,2.0);
+	addFloatParameter("Density",&lightScatter.uniformDensity,0.001,2.0);
+	addFloatParameter("Weight",&lightScatter.uniformWeight,0.001,10.0);
+	
+
+	
+	// Example parameters
+	
+	// event parameter using a Trigger<bool> class
+	// this will automatically handle value changes for us ( see draw() )
+	addEventParameter("flash",&eventExample.val);
+*/	
+	// std::string example
+	//stdString = "hello world";
+	//addStringParameter("std string",&stdString);
+	
+	// oldschool C string with a buffer of chars
+	//strcpy(cString,"hello world");
+	//addCStringParameter("c string",cString);
+	
+#endif
 }
 
 //--------------------------------------------------------------
@@ -179,6 +215,16 @@ void testApp::updateSpot(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
+	
+#ifdef IS_FFGL	
+	// calling isTriggered on a Trigger<> object, tells us if the internal value has changed.
+	// this is handy for handling event parameters in FFGL without having to mantain two copies of a member
+	if(eventExample.isTriggered())
+	{
+		boxes.dropBoxInCol(ofRandom(0, NUM_COLS));
+	}
+#endif
+	
 	//1 - Render offscreen with a FBO: the light source and the occluding objects, 
 	//no shaders involved here. In order to save cycles, you can render to a lower 
 	//resolution (factor 2 gives good results) and disable texturing/depth testing.
@@ -564,6 +610,9 @@ void testApp::mouseMoved(int x, int y ){
 
 			break;
 	}
+#else
+	scatterX = mouseX;
+	scatterY = mouseY;
 #endif		
 }
 

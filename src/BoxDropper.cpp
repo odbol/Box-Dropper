@@ -122,23 +122,24 @@ void BoxDropper::draw() {
 	//blur.setBlurParams(4, (float)mouseX / 100.0);
 	//blur.beginRender();
 	
-	
+	/*	*/
 	for(int i=0; i<circles.size(); i++) {
 		circles[i].draw();
 	}
 	for(int i=0; i<polygons.size(); i++) {
 		polygons[i].draw();
-	}
+	}	 
 	for(int i=0; i<boxes.size(); i++) {
 		boxes[i].draw();
 	}
+
 	for(int i=0; i<lines.size(); i++) {
 		lines[i].draw();
 	}
 	for(int i=0; i<customParticles.size(); i++) {
 		customParticles[i].draw();
 	}
-	
+
 	//blur.endRender();
 	//blur.draw(0, 0, ofGetWidth(), ofGetHeight(), true);
 	
@@ -175,10 +176,15 @@ void BoxDropper::dropBoxInCol(int col) {
 void BoxDropper::dropBox(int x, int y) {
 
 	GlowBox rect;
-	rect.color.r = 1.0;
-	rect.color.g = 0.0;
-	rect.color.b = 0.0;
-	rect.color.a = 1.0;
+	rect.color.r = 1.0 * 255.0f;
+	rect.color.g = 0.0 * 255.0f;
+	rect.color.b = 0.0 * 255.0f;
+	rect.color.a = 1.0 * 255.0f;
+	
+	rect.stroke.r = 1.0 * 255.0f;
+	rect.stroke.g = 0.0 * 255.0f;
+	rect.stroke.b = 1.0 * 255.0f;
+	rect.stroke.a = 1.0 * 255.0f;
 
 	rect.setPhysics(mass, bounce, 0.5);
 	rect.setup(box2d.getWorld(), x, y, boxWidth, boxHeight);

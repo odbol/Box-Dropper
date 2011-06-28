@@ -20,6 +20,8 @@ public:
 	GlowBox() {
 	}
 	ofColor color;
+	ofColor stroke;
+	
 	void draw();
 };
 

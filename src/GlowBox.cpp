@@ -10,7 +10,6 @@
 #include "GlowBox.h"
 
 void GlowBox::draw() {
-	
 	if(dead) return;
 	
 	//wow this is a pain
@@ -25,9 +24,11 @@ void GlowBox::draw() {
 		verts[i] = b2Mul(xf, localVertices[i]);
 	}
 	
+	ofPoint curVel = getVelocity();
+	const float v = 255.0f;//((float)(MIN((curVel.x), 10.0f)) / 10.0f) * 55.0f + 200.0f;
 	
 	ofEnableAlphaBlending();
-	ofSetColor(color.r, color.g, color.b, color.a);
+	ofSetColor(color.r, color.g, color.b, v);
 	ofFill();
 	ofBeginShape();
 	for (int32 i = 0; i <count; i++) {
@@ -35,7 +36,7 @@ void GlowBox::draw() {
 	}
 	ofEndShape();
 	
-	ofSetColor(0, 255, 255);
+	ofSetColor(stroke.r, stroke.g, stroke.b, v);
 	ofNoFill();
 	ofBeginShape();
 	for (int32 i = 0; i <count; i++) {

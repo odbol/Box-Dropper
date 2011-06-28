@@ -415,7 +415,7 @@ void testApp::draw(){
 	lightScatter.setLightParams(scatterX, scatterY);
 	lightScatter.beginRender();
 		ofSetColor(255, 255, 255);
-		fboLight.draw(0, 0);
+		fboLight.draw(0, 0);//doesn't line up right:, ofGetWidth(),ofGetHeight());
 	lightScatter.endRender();
 	
 	lightScatter.draw(0, 0, ofGetWidth(),ofGetHeight(), true);

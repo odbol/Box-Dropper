@@ -72,6 +72,15 @@ void testApp::setup(){
 	glEndList();
 	*/
 	
+	//sphereHueSpeed = 0.01f;
+	sphereHue = 0.0f;
+	//pSetHSV(&sphereColor, 10.0f, 1.0f, 1.0f, 1.0f);
+	sphereColor.setRange(255).setMode(OF_COLOR_RGB).set(0,0,255);
+	sphereOtherColor.setRange(255).setMode(OF_COLOR_RGB).set(255,0,0);
+	
+	
+	
+	
 	spotCutOff = 50.0f;
 	spotExponent = 15.0f;
 	sphereEnabled = true;
@@ -80,7 +89,7 @@ void testApp::setup(){
 	
 	mouseMode = 0;
 #ifdef DEBUG
-	sphereEnabled = true;
+	lightSphereEnabled = true;
 #endif		
 	
 	GlowBox::setIs3D(false);
@@ -208,6 +217,17 @@ void testApp::update(){
 	GLfloat  ambientLight[] = { ambientLightR, ambientLightG, ambientLightB, 1.0f};
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
 	
+	//update sphere color
+	if (sphereHueSpeed > 0.0f) {
+		sphereHue = (sphereHue + sphereHueSpeed);
+		if (sphereHue >= 1.0f) {
+			sphereHue = 0.0f;
+			sphereColor.set(0,0,255);
+		}
+		//pSetHSV(&sphereColor, sphereHue, 1.0f, 1.0f, 1.0f);
+		
+		sphereColor.lerp(sphereOtherColor, sphereHue);
+	}
 	
 	//init boxes
 	boxes.update(); 
@@ -306,7 +326,8 @@ void testApp::draw(){
 			
 			// Set material color and draw a sphere in the middle
 			if (sphereEnabled) {
-				glColor3ub(0, 0, 255);
+				//glColor3ub(0, 0, 255);
+				glColor4f(sphereColor.getRed(), sphereColor.getGreen(), sphereColor.getBlue(), sphereColor.getAlpha());
 			
 				if(iTess == MODE_VERYLOW)
 					glutSolidSphere(SPHERE_SIZE, 7, 7);
@@ -404,7 +425,9 @@ void testApp::draw(){
 			
 			// Set material color and draw a sphere in the middle
 			if (sphereEnabled) {
-				glColor3ub(0, 0, 255);
+				//glColor4f(sphereColor.r, sphereColor.g, sphereColor.b, sphereColor.a);
+				glColor4f(sphereColor.getRed(), sphereColor.getGreen(), sphereColor.getBlue(), sphereColor.getAlpha());
+			
 				
 				if(iTess == MODE_VERYLOW)
 					glutSolidSphere(SPHERE_SIZE, 7, 7);
@@ -450,7 +473,7 @@ void testApp::draw(){
 		ofSetColor(255, 255, 255, 255);
 		ofDrawBitmapString("Num boxes: " + ofToString(boxes.getCount()) + " FPS: " + ofToString(ofGetFrameRate()), 10, 20);
 		//ofDrawBitmapString("spot pos: [" + ofToString(lightPos[0]) + ","+ ofToString(lightPos[1]) + ","+ ofToString(lightPos[2]) + "]", 10, 40);
-		ofDrawBitmapString("light exp: [" + ofToString(lightScatter.uniformExposure) + "], decay: " + ofToString(lightScatter.uniformDecay) + ", density: " + ofToString(lightScatter.uniformDensity) + ", wight: " + ofToString(lightScatter.uniformWeight), 10, 40);
+		ofDrawBitmapString("light hue: " + ofToString(sphereHue) + " exp: [" + ofToString(lightScatter.uniformExposure) + "], decay: " + ofToString(lightScatter.uniformDecay) + ", density: " + ofToString(lightScatter.uniformDensity) + ", wight: " + ofToString(lightScatter.uniformWeight), 10, 40);
 		ofDrawBitmapString(" move the light scattering source with the mouse \n"
 						   "\n"
 						   " arrows to move light spot \n "
@@ -724,5 +747,37 @@ void testApp::mouseReleased(int x, int y, int button){
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
 
+}
+
+
+
+void testApp::pSetHSV(ofColor* color, float h, float s, float v, float a ) {  
+	// H [0, 360] S, V and A [0.0, 1.0].  
+	int i = (int)floor(h/60.0f) % 6;  
+	float f = h/60.0f - floor(h/60.0f);  
+	float p = v * (float)(1 - s);  
+	float q = v * (float)(1 - s * f);  
+	float t = v * (float)(1 - (1 - f) * s);  
+	
+	switch (i) {     
+		case 0: pSetColor(color, v, t, p, a);  
+			break;  
+		case 1: pSetColor(color, q, v, p, a);  
+			break;  
+		case 2: pSetColor(color, p, v, t, a);  
+			break;  
+		case 3: pSetColor(color, p, q, v, a);  
+			break;  
+		case 4: pSetColor(color, t, p, v, a);  
+			break;  
+		case 5: pSetColor(color, v, p, q, a);  
+	}  
+}
+
+void testApp::pSetColor(ofColor* color, float r, float b, float g, float a) {
+	color->r = r * 255.0f;
+	color->b = b * 255.0f;
+	color->g = g * 255.0f;
+	color->a = a * 255.0f;
 }
 

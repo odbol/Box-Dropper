@@ -16,6 +16,8 @@
 
 #include "PaletteManager.h"
 
+#include "ofxColor.h"
+
 
 #define ROTATION_SPEED_MAX 3.0f
 
@@ -78,10 +80,18 @@ class testApp : public ofBaseApp{
 	//enables light source being drawn
 	bool lightSphereEnabled;
 	
+	ofxColorf sphereColor;
+	ofxColorf sphereOtherColor;
+	
+	float sphereHue;
+	float sphereHueSpeed;
+	
 	bool isMonochrome;
 	
-	
-	
+	//sets openGL color in HSV space
+	void pSetHSV(ofColor* color, float h, float s, float v, float a );
+	void pSetColor(ofColor* color, float r, float b, float g, float a);
+
 	//boxes
 	void dropBox();
 private: 

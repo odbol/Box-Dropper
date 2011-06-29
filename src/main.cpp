@@ -14,6 +14,10 @@ int main(int argc, char **argv){
 	if (args->contains("--fullscreen")) {
 		ofSetupOpenGL(&window, 1024,768, OF_GAME_MODE);			// <-------- setup the GL context
 	}
+	else if (args->contains("--maximized")) {
+		ofSetupOpenGL(&window, 1024,768, OF_FULLSCREEN);			// <-------- setup the GL context
+		ofSetWindowPosition(0,0);
+	}
 	else {
 		ofSetupOpenGL(&window, 1024,768, OF_WINDOW);			// <-------- setup the GL context
 	}

@@ -10,6 +10,7 @@
 		3C71B5BE13BA69DA00CF4D67 /* ofxArgs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C71B5BC13BA69DA00CF4D67 /* ofxArgs.cpp */; };
 		3C71B5DB13BA6E4D00CF4D67 /* PaletteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C71B5DA13BA6E4D00CF4D67 /* PaletteManager.cpp */; };
 		3C71B66213BA7B9600CF4D67 /* ofxDirList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C71B66013BA7B9600CF4D67 /* ofxDirList.cpp */; };
+		3C71B89113BB1A3D00CF4D67 /* ofxColorBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C71B88B13BB1A3D00CF4D67 /* ofxColorBase.cpp */; };
 		3CE6840613B3218B00826E3D /* lightScattering.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6840213B3218B00826E3D /* lightScattering.cpp */; };
 		3CE6841F13B321F400826E3D /* ofxFBOTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6841713B321F400826E3D /* ofxFBOTexture.cpp */; };
 		3CE6842013B321F400826E3D /* ofxShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CE6841813B321F400826E3D /* ofxShader.cpp */; };
@@ -141,6 +142,13 @@
 		3C71B65E13BA7B9600CF4D67 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		3C71B66013BA7B9600CF4D67 /* ofxDirList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxDirList.cpp; sourceTree = "<group>"; };
 		3C71B66113BA7B9600CF4D67 /* ofxDirList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxDirList.h; sourceTree = "<group>"; };
+		3C71B88A13BB1A3D00CF4D67 /* ofxColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxColor.h; sourceTree = "<group>"; };
+		3C71B88B13BB1A3D00CF4D67 /* ofxColorBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxColorBase.cpp; sourceTree = "<group>"; };
+		3C71B88C13BB1A3D00CF4D67 /* ofxColorConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxColorConversion.h; sourceTree = "<group>"; };
+		3C71B88D13BB1A3D00CF4D67 /* ofxColorShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxColorShared.h; sourceTree = "<group>"; };
+		3C71B88E13BB1A3D00CF4D67 /* ofxColorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxColorMath.h; sourceTree = "<group>"; };
+		3C71B88F13BB1A3D00CF4D67 /* ofxColorMatching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxColorMatching.h; sourceTree = "<group>"; };
+		3C71B89013BB1A3D00CF4D67 /* ofxColorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxColorBase.h; sourceTree = "<group>"; };
 		3CE6840213B3218B00826E3D /* lightScattering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lightScattering.cpp; sourceTree = "<group>"; };
 		3CE6840313B3218B00826E3D /* lightScattering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lightScattering.h; sourceTree = "<group>"; };
 		3CE6841713B321F400826E3D /* ofxFBOTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFBOTexture.cpp; sourceTree = "<group>"; };
@@ -386,6 +394,21 @@
 			);
 			path = src;
 			sourceTree = "<group>";
+		};
+		3C71B88913BB1A3D00CF4D67 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3C71B88A13BB1A3D00CF4D67 /* ofxColor.h */,
+				3C71B88B13BB1A3D00CF4D67 /* ofxColorBase.cpp */,
+				3C71B88C13BB1A3D00CF4D67 /* ofxColorConversion.h */,
+				3C71B88D13BB1A3D00CF4D67 /* ofxColorShared.h */,
+				3C71B88E13BB1A3D00CF4D67 /* ofxColorMath.h */,
+				3C71B88F13BB1A3D00CF4D67 /* ofxColorMatching.h */,
+				3C71B89013BB1A3D00CF4D67 /* ofxColorBase.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxColor/src;
+			sourceTree = SOURCE_ROOT;
 		};
 		3CE6841613B321F400826E3D /* ofxShader */ = {
 			isa = PBXGroup;
@@ -659,6 +682,7 @@
 		BB4B018C10F6955C006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				3C71B88913BB1A3D00CF4D67 /* src */,
 				3C71B65B13BA7B9600CF4D67 /* ofxDirList */,
 				3C71B5B913BA69DA00CF4D67 /* ofxArgs */,
 				3CF42B4613B53A68003B2CA0 /* ofxBox2d */,
@@ -1093,6 +1117,7 @@
 				3C71B5BE13BA69DA00CF4D67 /* ofxArgs.cpp in Sources */,
 				3C71B5DB13BA6E4D00CF4D67 /* PaletteManager.cpp in Sources */,
 				3C71B66213BA7B9600CF4D67 /* ofxDirList.cpp in Sources */,
+				3C71B89113BB1A3D00CF4D67 /* ofxColorBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

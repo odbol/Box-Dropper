@@ -30,4 +30,6 @@ public:
 	float uniformDecay;
 	float uniformDensity;
 	float uniformWeight;
+	
+	float flickerAmount;
 };

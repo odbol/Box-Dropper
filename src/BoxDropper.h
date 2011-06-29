@@ -81,6 +81,10 @@ public:
 	void dropBox(int x, int y);
 	void dropBoxInCol(int col);
 	
+	void killOutOfBounds();
+	
+	//returns number of boxes alive
+	int getCount();
 	
 	/*
 	//blur shader

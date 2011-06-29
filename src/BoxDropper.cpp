@@ -120,6 +120,22 @@ void BoxDropper::update() {
 	
 }
 
+int BoxDropper::getCount() {
+	return boxes.size();
+}
+
+void BoxDropper::killOutOfBounds() {
+	//for (int i=0; i < boxes.size(); i++) {  
+	vector<GlowBox>::iterator it;
+	for ( it=boxes.begin() ; it < boxes.end(); it++ ) {
+		ofPoint tmppos = it->getPosition();//boxes[i].getPosition();  
+		if (tmppos.y > ofGetHeight() * 2){  
+			//boxes[i].destroyShape();
+			it->destroyShape();
+			boxes.erase(it);
+		}  
+	}  
+}
 
 //--------------------------------------------------------------
 void BoxDropper::draw() {
@@ -179,7 +195,9 @@ void BoxDropper::dropBoxInCol(int col) {
 
 
 void BoxDropper::dropBox(int x, int y) {
-
+	//garbage collect
+	killOutOfBounds();
+	
 	GlowBox rect;
 		/*
 	rect.color.r = 0.0 * 255.0f;

@@ -80,10 +80,13 @@ void PaletteManager::togglePalette() {
 	DIR.setVerbose(false);
     int nImages = DIR.listDir("palettes");
  	
+	printf("\nloading palette %s\n", DIR.getPath(paletteIdx).c_str());
 	img.loadImage(DIR.getPath(paletteIdx));	
+	
 		
 	//img.loadImage(palettes[paletteIdx]);
 
 	
 	paletteIdx = (paletteIdx + 1) % nImages;
 }
+

@@ -39,7 +39,7 @@ GLfloat zOffset = -1.0f;
 #define MODE_VERYHIGH 5
 
 int iShade = MODE_FLAT;
-int iTess = MODE_VERYLOW;
+int iTess = MODE_VERYHIGH;
 
 #define OFF_SCREEN_RENDER_RATIO 6
 
@@ -62,7 +62,7 @@ void testApp::setup(){
 	dListA = glGenLists(1);
 	glNewList(dListA,GL_COMPILE);
 		glColor3ub(0, 0, 255);
-		glutSolidSphere(30.0f, 50, 50);
+		glutSolidSphere(SPHERE_SIZE, 50, 50);
 	glEndList();
 	
 	dListB = glGenLists(1);
@@ -74,8 +74,10 @@ void testApp::setup(){
 	
 	spotCutOff = 50.0f;
 	spotExponent = 15.0f;
-	sphereEnabled = false;
+	sphereEnabled = true;
 
+	lightSphereEnabled = false;
+	
 	mouseMode = 0;
 #ifdef DEBUG
 	sphereEnabled = true;
@@ -88,6 +90,7 @@ void testApp::setup(){
 	lightScatter.uniformDecay = 0.9947f;
 	lightScatter.uniformDensity = 1.14f;
 	lightScatter.uniformWeight = 6.6f;
+	lightScatter.flickerAmount = 0.0f;
 	
 	//init boxes
 	boxes.setup(); 
@@ -306,12 +309,12 @@ void testApp::draw(){
 				glColor3ub(0, 0, 255);
 			
 				if(iTess == MODE_VERYLOW)
-					glutSolidSphere(30.0f, 7, 7);
+					glutSolidSphere(SPHERE_SIZE, 7, 7);
 				else 
 					if(iTess == MODE_MEDIUM)
-						glutSolidSphere(30.0f, 15, 15);
+						glutSolidSphere(SPHERE_SIZE, 15, 15);
 					else //  iTess = MODE_MEDIUM;
-						glutSolidSphere(30.0f, 50, 50);
+						glutSolidSphere(SPHERE_SIZE, 30, 30);
 			}
 	
 			//glCallList(dListA);
@@ -361,54 +364,56 @@ void testApp::draw(){
 		
 		// First place the light 
 		// Save the coordinate transformation
-		glPushMatrix();	
-			// Rotate coordinate system
-			glRotatef(yRot, 0.0f, 1.0f, 0.0f);
-			glRotatef(xRot, 1.0f, 0.0f, 0.0f);
-		
-			// Specify new position and direction in rotated coords.
-			glLightfv(GL_LIGHT0,GL_POSITION,lightPos);
-			//glLightfv(GL_LIGHT0,GL_SPOT_DIRECTION,spotDir);
-			updateSpot();
-		
+		if (lightSphereEnabled) {
+			glPushMatrix();	
+				// Rotate coordinate system
+				glRotatef(yRot, 0.0f, 1.0f, 0.0f);
+				glRotatef(xRot, 1.0f, 0.0f, 0.0f);
+			
+				// Specify new position and direction in rotated coords.
+				glLightfv(GL_LIGHT0,GL_POSITION,lightPos);
+				//glLightfv(GL_LIGHT0,GL_SPOT_DIRECTION,spotDir);
+				updateSpot();
+			
+				if (sphereEnabled) {
+					// Draw a red cone to enclose the light source
+					glColor3ub(255,0,0);	
+				
+					// Translate origin to move the cone out to where the light
+					// is positioned.
+					glTranslatef(lightPos[0],lightPos[1],lightPos[2]);
+					glutSolidCone(4.0f,6.0f,15,15);
+				
+					// Draw a smaller displaced sphere to denote the light bulb
+					// Save the lighting state variables
+					glPushAttrib(GL_LIGHTING_BIT);
+				
+						// Turn off lighting and specify a bright yellow sphere
+						glDisable(GL_LIGHTING);
+						glColor3ub(255,255,0);
+						glutSolidSphere(3.0f, 15, 15);
+				
+					// Restore lighting state variables
+					glPopAttrib();
+						
+				}
+			
+			// Restore coordinate transformations
+			glPopMatrix();
+			
+			
+			// Set material color and draw a sphere in the middle
 			if (sphereEnabled) {
-				// Draw a red cone to enclose the light source
-				glColor3ub(255,0,0);	
-			
-				// Translate origin to move the cone out to where the light
-				// is positioned.
-				glTranslatef(lightPos[0],lightPos[1],lightPos[2]);
-				glutSolidCone(4.0f,6.0f,15,15);
-			
-				// Draw a smaller displaced sphere to denote the light bulb
-				// Save the lighting state variables
-				glPushAttrib(GL_LIGHTING_BIT);
-			
-					// Turn off lighting and specify a bright yellow sphere
-					glDisable(GL_LIGHTING);
-					glColor3ub(255,255,0);
-					glutSolidSphere(3.0f, 15, 15);
-			
-				// Restore lighting state variables
-				glPopAttrib();
-					
+				glColor3ub(0, 0, 255);
+				
+				if(iTess == MODE_VERYLOW)
+					glutSolidSphere(SPHERE_SIZE, 7, 7);
+				else 
+					if(iTess == MODE_MEDIUM)
+						glutSolidSphere(SPHERE_SIZE, 15, 15);
+					else //  iTess = MODE_MEDIUM;
+						glutSolidSphere(SPHERE_SIZE, 30, 30);
 			}
-		
-		// Restore coordinate transformations
-		glPopMatrix();
-		
-		
-		// Set material color and draw a sphere in the middle
-		if (sphereEnabled) {
-			glColor3ub(0, 0, 255);
-			
-			if(iTess == MODE_VERYLOW)
-				glutSolidSphere(30.0f, 7, 7);
-			else 
-				if(iTess == MODE_MEDIUM)
-					glutSolidSphere(30.0f, 15, 15);
-				else //  iTess = MODE_MEDIUM;
-					glutSolidSphere(30.0f, 50, 50);
 		}
 	
 		//glCallList(dListA);
@@ -443,8 +448,8 @@ void testApp::draw(){
 	glPushMatrix();
 		ofTranslate(0.0f, 0.0f, 2.0f);
 		ofSetColor(255, 255, 255, 255);
-		ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 10, 20);
-		ofDrawBitmapString("spot pos: [" + ofToString(lightPos[0]) + ","+ ofToString(lightPos[1]) + ","+ ofToString(lightPos[2]) + "]", 10, 40);
+		ofDrawBitmapString("Num boxes: " + ofToString(boxes.getCount()) + " FPS: " + ofToString(ofGetFrameRate()), 10, 20);
+		//ofDrawBitmapString("spot pos: [" + ofToString(lightPos[0]) + ","+ ofToString(lightPos[1]) + ","+ ofToString(lightPos[2]) + "]", 10, 40);
 		ofDrawBitmapString("light exp: [" + ofToString(lightScatter.uniformExposure) + "], decay: " + ofToString(lightScatter.uniformDecay) + ", density: " + ofToString(lightScatter.uniformDensity) + ", wight: " + ofToString(lightScatter.uniformWeight), 10, 40);
 		ofDrawBitmapString(" move the light scattering source with the mouse \n"
 						   "\n"
@@ -587,7 +592,7 @@ void testApp::keyPressed(int key){
 		case 'q': moveZ+=10.0f; break;
 		case 'w': moveZ-=10.0f; break;
 		case 'a': moveY+=10.0f; break;
-		case 's': moveY-=10.0f; break;
+		//case 's': moveY-=10.0f; break;
 		case 'z': moveX+=10.0f; break;
 		case 'x': moveX-=10.0f; break;
 			
@@ -606,14 +611,18 @@ void testApp::keyPressed(int key){
 			}
 
 			break;
+		case 's': sphereEnabled = !sphereEnabled; break;
 		case 'f': boxes.setFloor(!boxes.isFloorEnabled); break;
 		case 'p': palettes.togglePalette(); break;
 			
 
 		case '/':	
-			mouseMode = (mouseMode + 1) % 3;
+			mouseMode = (mouseMode + 1) % 6;
 			break;
-		
+
+		case '0':
+			mouseMode = -1;
+			break;			
 		case '1':
 			mouseMode = 0;
 			break;
@@ -647,7 +656,7 @@ void testApp::onMouseMove(int x, int y, int mode ){
 		case 1:
 			yspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
 			break;
-			
+			/*
 		case 2:
 			lightPos[0] = ((float)mouseX / (float)ofGetWidth()) * ofGetWidth() - ofGetWidth() / 2.0f;
 			lightPos[1] = ((float)mouseY / (float)ofGetHeight()) * ofGetHeight() - ofGetHeight() / 2.0f;
@@ -656,17 +665,15 @@ void testApp::onMouseMove(int x, int y, int mode ){
 			lightPos[1] = ((float)mouseY / (float)ofGetHeight()) * ofGetHeight() - ofGetHeight() / 2.0f;
 			lightPos[2] = ((float)mouseX / (float)ofGetWidth()) *  ofGetWidth() - ofGetWidth() / 2.0f;
 			break;		
-			/*
-		case 1:
-			yspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
-			break;
+				*/
+
 		case 2:
 			xspeed = ((float)mouseY / (float)ofGetHeight()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
 			break;		
 		case 3:
 			xspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
 			break;	
-			*/
+		
 			
 		case 4:
 			lightScatter.uniformExposure = ((float)mouseX / (float)ofGetWidth() * 10.0f) * 0.0034f;
@@ -676,7 +683,7 @@ void testApp::onMouseMove(int x, int y, int mode ){
 			lightScatter.uniformDensity = ((float)mouseX / (float)ofGetWidth() * 10.0f) * 0.84f;
 			lightScatter.uniformWeight = ((float)mouseY / (float)ofGetHeight() * 10.0f) * 5.65f;
 			break;	
-		default:
+		case 0:
 			scatterX = mouseX;
 			scatterY = ofGetHeight() - mouseY;
 
@@ -690,7 +697,7 @@ void testApp::onMouseMove(int x, int y, int mode ){
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-	onMouseMove(x, y, button);
+	onMouseMove(x, y, mouseMode >= 0 ? button : mouseMode);
 }
 
 void testApp::dropBox() {

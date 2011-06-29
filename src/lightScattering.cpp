@@ -25,6 +25,8 @@ void lightScattering::setup(int fboW, int fboH){
 	uniformDensity = 0.84f;
 	uniformWeight = 5.65f;	
 	
+	flickerAmount = 0.0001f;
+	
 }
 
 //--------------------------------------------------------------
@@ -50,10 +52,11 @@ void lightScattering::draw(float x, float y, float w, float h, bool useShader){
 	
 	if( useShader ){
 		
+		
 		//first the horizontal shader 
 		shader.setShaderActive(true);		
 		shader.setUniformVariable2f("lightPositionOnScreen",pos.x/OFF_SCREEN_RENDER_RATIO,pos.y/OFF_SCREEN_RENDER_RATIO);
-		shader.setUniformVariable1f("exposure",uniformExposure);
+		shader.setUniformVariable1f("exposure",uniformExposure + ofRandom(-flickerAmount, flickerAmount));
 		shader.setUniformVariable1f("decay",uniformDecay);
 		shader.setUniformVariable1f("density",uniformDensity);
 		shader.setUniformVariable1f("weight",uniformWeight);

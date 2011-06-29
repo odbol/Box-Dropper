@@ -2,7 +2,7 @@
 #define _TEST_APP
 
 //comment out to disable debug stamtents
-#define DEBUG
+//# define DEBUG
 
 #include "ofMain.h"
 #include "ofxFBOTexture.h"
@@ -18,6 +18,8 @@
 
 
 #define ROTATION_SPEED_MAX 3.0f
+
+#define SPHERE_SIZE 20.0f
 
 #ifdef IS_FFGL
 
@@ -71,8 +73,10 @@ class testApp : public ofBaseApp{
 	//position of the light ray origin
 	int scatterX, scatterY;
 	
-	
+	//enables light source in bg
 	bool sphereEnabled;
+	//enables light source being drawn
+	bool lightSphereEnabled;
 	
 	bool isMonochrome;
 	

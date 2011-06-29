@@ -2,6 +2,7 @@
 
 #include "testApp.h"
 
+//float GlowBox::fillAlpha;
 
 GLfloat		xrot,yrot,zrot,								// X, Y & Z Rotation
 xspeed,yspeed,zspeed=0;									// X, Y & Z Spin Speed
@@ -271,26 +272,30 @@ void testApp::draw(){
 			glLightfv(GL_LIGHT0,GL_POSITION,lightPos);
 			//glLightfv(GL_LIGHT0,GL_SPOT_DIRECTION,spotDir);
 			updateSpot();
-			
-			// Draw a red cone to enclose the light source
-			glColor3ub(255,0,0);	
-			
-			// Translate origin to move the cone out to where the light
-			// is positioned.
-			glTranslatef(lightPos[0],lightPos[1],lightPos[2]);
-			glutSolidCone(4.0f,6.0f,15,15);
-			
-			// Draw a smaller displaced sphere to denote the light bulb
-			// Save the lighting state variables
-			glPushAttrib(GL_LIGHTING_BIT);
-			
-			// Turn off lighting and specify a bright yellow sphere
-			glDisable(GL_LIGHTING);
-			glColor3ub(255,255,0);
-			glutSolidSphere(3.0f, 15, 15);
-			
-			// Restore lighting state variables
-			glPopAttrib();
+	
+	
+			if (sphereEnabled) {
+				// Draw a red cone to enclose the light source
+				glColor3ub(255,0,0);	
+				
+				// Translate origin to move the cone out to where the light
+				// is positioned.
+				glTranslatef(lightPos[0],lightPos[1],lightPos[2]);
+				glutSolidCone(4.0f,6.0f,15,15);
+				
+				// Draw a smaller displaced sphere to denote the light bulb
+				// Save the lighting state variables
+				glPushAttrib(GL_LIGHTING_BIT);
+				
+				// Turn off lighting and specify a bright yellow sphere
+				glDisable(GL_LIGHTING);
+				glColor3ub(255,255,0);
+				glutSolidSphere(3.0f, 15, 15);
+				
+				// Restore lighting state variables
+				glPopAttrib();
+			}
+	
 			
 			// Restore coordinate transformations
 			glPopMatrix();
@@ -366,25 +371,28 @@ void testApp::draw(){
 			//glLightfv(GL_LIGHT0,GL_SPOT_DIRECTION,spotDir);
 			updateSpot();
 		
-			// Draw a red cone to enclose the light source
-			glColor3ub(255,0,0);	
-		
-			// Translate origin to move the cone out to where the light
-			// is positioned.
-			glTranslatef(lightPos[0],lightPos[1],lightPos[2]);
-			glutSolidCone(4.0f,6.0f,15,15);
-		
-			// Draw a smaller displaced sphere to denote the light bulb
-			// Save the lighting state variables
-			glPushAttrib(GL_LIGHTING_BIT);
-		
-				// Turn off lighting and specify a bright yellow sphere
-				glDisable(GL_LIGHTING);
-				glColor3ub(255,255,0);
-				glutSolidSphere(3.0f, 15, 15);
-		
-			// Restore lighting state variables
-			glPopAttrib();
+			if (sphereEnabled) {
+				// Draw a red cone to enclose the light source
+				glColor3ub(255,0,0);	
+			
+				// Translate origin to move the cone out to where the light
+				// is positioned.
+				glTranslatef(lightPos[0],lightPos[1],lightPos[2]);
+				glutSolidCone(4.0f,6.0f,15,15);
+			
+				// Draw a smaller displaced sphere to denote the light bulb
+				// Save the lighting state variables
+				glPushAttrib(GL_LIGHTING_BIT);
+			
+					// Turn off lighting and specify a bright yellow sphere
+					glDisable(GL_LIGHTING);
+					glColor3ub(255,255,0);
+					glutSolidSphere(3.0f, 15, 15);
+			
+				// Restore lighting state variables
+				glPopAttrib();
+					
+			}
 		
 		// Restore coordinate transformations
 		glPopMatrix();
@@ -565,7 +573,9 @@ void testApp::keyPressed(int key){
             break;
 		 */
 			
-		case ' ': ofToggleFullscreen(); break;
+		case OF_KEY_RETURN: ofToggleFullscreen(); break;
+			
+		case ' ': dropBox(); break;	
 			
 		case 'j': zspeed+=0.01f; break;
 		case 'l': zspeed-=0.01f; break;
@@ -587,7 +597,15 @@ void testApp::keyPressed(int key){
 		case '<': zOffset += 1.0f; break;
 		case '>': zOffset -= 1.0f; break;
 			
-		case 'c': spotCutOff+=10; break;
+		case 'c':
+			//spotCutOff+=10; 
+			if (GlowBox::fillAlpha > 0)
+				GlowBox::fillAlpha = 0.0f;
+			else {
+				GlowBox::fillAlpha = 220.0f;
+			}
+
+			break;
 		case 'f': boxes.setFloor(!boxes.isFloorEnabled); break;
 		case 'p': palettes.togglePalette(); break;
 			
@@ -675,10 +693,7 @@ void testApp::mouseDragged(int x, int y, int button){
 	onMouseMove(x, y, button);
 }
 
-//--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
-	
-	
+void testApp::dropBox() {
 	//load palettes
 	if (!isMonochrome) {
 		boxes.setColor(palettes.getRandomPalette(250));
@@ -686,6 +701,12 @@ void testApp::mousePressed(int x, int y, int button){
 	
 	
 	boxes.dropBoxInCol(ofRandom(0, NUM_COLS));
+}
+
+//--------------------------------------------------------------
+void testApp::mousePressed(int x, int y, int button){
+	
+	dropBox();
 }
 
 //--------------------------------------------------------------

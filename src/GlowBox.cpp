@@ -17,6 +17,7 @@ void GlowBox::setup(b2World * b2dworld, float x, float y, float w, float h, bool
 }
 
 bool GlowBox::is3D;
+float GlowBox::fillAlpha;
 
 void GlowBox::setIs3D(bool enable3D) {
 	GlowBox::is3D = enable3D;
@@ -45,8 +46,8 @@ void GlowBox::draw() {
 	
 	
 	ofPoint curVel = getVelocity();
-	const float v = ((float)(MIN(ABS(curVel.x), 10.0f)) / 10.0f) * 55.0f + 200.0f;
-	
+	const float v = ((float)(MIN(ABS(curVel.x), 10.0f)) / 10.0f) * 55.0f + 100.0f;
+	//fillAlpha = v;
 	
 	glPushMatrix();
 
@@ -64,18 +65,26 @@ void GlowBox::draw() {
 	else {
 		//glPolygonMode(GL_FRONT, GL_FILL);
 		//glRectf(-width/2, -height/2, width/2, height/2);
+		ofEnableSmoothing();
+		
+		ofSetLineWidth(1.0f);
+
+		
 		ofEnableAlphaBlending();
-		ofSetColor(color.r, color.g, color.b, v);
+		ofSetColor(color.r, color.g, color.b, fillAlpha);
 		ofFill();
 		ofRect(-width/2, -height/2, width, height);
 
+		ofSetLineWidth(5.0f);
 		
-		ofSetColor(stroke.r, stroke.g, stroke.b, v);
+		ofSetColor(stroke.r, stroke.g, stroke.b, 255.0f);
 		ofNoFill();
 		ofRect(-width/2, -height/2, width, height);
 
 		ofDisableAlphaBlending();
 		
+		ofDisableSmoothing();
+	
 	}
 	glPopMatrix();
 	

@@ -274,7 +274,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>13</integer>
+									<integer>6</integer>
 									<integer>3</integer>
 									<integer>0</integer>
 								</array>
@@ -317,7 +317,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>testApp.cpp</string>
+								<string>GlowBox.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>testApp.cpp</string>
+										<string>GlowBox.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3C71B6F513BAE89B00CF4D67</string>
+										<string>3C71B74213BAF70C00CF4D67</string>
 										<key>history</key>
 										<array>
 											<string>3CE6845613B323F300826E3D</string>
@@ -369,22 +369,22 @@
 											<string>3C71B5F613BA775600CF4D67</string>
 											<string>3C71B5FB13BA775600CF4D67</string>
 											<string>3C71B5FC13BA775600CF4D67</string>
-											<string>3C71B66C13BA7EB600CF4D67</string>
-											<string>3C71B67C13BA7EE600CF4D67</string>
 											<string>3C71B68213BA7F2B00CF4D67</string>
 											<string>3C71B69C13BA814D00CF4D67</string>
-											<string>3C71B69E13BA814D00CF4D67</string>
 											<string>3C71B69F13BA814D00CF4D67</string>
 											<string>3C71B6A013BA814D00CF4D67</string>
-											<string>3C71B6A113BA814D00CF4D67</string>
 											<string>3C71B6A813BA817A00CF4D67</string>
-											<string>3C71B6AD13BA828B00CF4D67</string>
 											<string>3C71B6AE13BA828B00CF4D67</string>
 											<string>3C71B6AF13BA828B00CF4D67</string>
 											<string>3C71B6B013BA828B00CF4D67</string>
 											<string>3C71B6B913BADCE700CF4D67</string>
-											<string>3C71B6EF13BAE79C00CF4D67</string>
-											<string>3C71B6F013BAE79C00CF4D67</string>
+											<string>3C71B70F13BAF38600CF4D67</string>
+											<string>3C71B72013BAF58500CF4D67</string>
+											<string>3C71B72613BAF5B300CF4D67</string>
+											<string>3C71B72713BAF5B300CF4D67</string>
+											<string>3C71B72C13BAF64800CF4D67</string>
+											<string>3C71B72D13BAF64800CF4D67</string>
+											<string>3C71B72513BAF5B300CF4D67</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -582,7 +582,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3C71B6F613BAE89B00CF4D67</string>
+		<string>3C71B74313BAF70C00CF4D67</string>
 		<string>3C71B5CA13BA6A8200CF4D67</string>
 		<string>3C71B5CB13BA6A8200CF4D67</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -607,14 +607,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PaletteManager.cpp</string>
+								<string>GlowBox.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -631,6 +629,8 @@
 							<string>328pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

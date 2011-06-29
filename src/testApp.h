@@ -2,7 +2,7 @@
 #define _TEST_APP
 
 //comment out to disable debug stamtents
-//# define DEBUG
+#define DEBUG
 
 #include "ofMain.h"
 #include "ofxFBOTexture.h"
@@ -77,7 +77,9 @@ class testApp : public ofBaseApp{
 	bool isMonochrome;
 	
 	
+	
 	//boxes
+	void dropBox();
 private: 
 	BoxDropper boxes;
 	void drawBoxes();

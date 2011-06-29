@@ -28,6 +28,8 @@ public:
 	static bool is3D;
 	static void setIs3D(bool enable3D);
 	
+	static float fillAlpha;
+	
 	void draw();
 	/*
 	 

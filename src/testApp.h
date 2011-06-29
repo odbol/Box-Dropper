@@ -17,6 +17,8 @@
 #include "PaletteManager.h"
 
 
+#define ROTATION_SPEED_MAX 3.0f
+
 #ifdef IS_FFGL
 
 #include "ofxFFGLApp.h"
@@ -81,14 +83,14 @@ private:
 	void drawBoxes();
 	
 	
-#ifdef DEBUG
-	
 	int mouseMode;
-#endif
+	void onMouseMove(int x, int y, int mode );
 	
 	
 	//palette
 	PaletteManager palettes;
+	
+	
 };
 
 	

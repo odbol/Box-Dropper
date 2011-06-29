@@ -75,9 +75,8 @@ void testApp::setup(){
 	spotExponent = 15.0f;
 	sphereEnabled = false;
 
-	
-#ifdef DEBUG
 	mouseMode = 0;
+#ifdef DEBUG
 	sphereEnabled = true;
 #endif		
 	
@@ -149,7 +148,7 @@ void testApp::setupRC()
 	
 	glEnable(GL_DEPTH_TEST);	// Hidden surface removal
     glFrontFace(GL_CCW);		// Counter clock-wise polygons face out
-    glEnable(GL_CULL_FACE);		// Do not try to display the back sides
+    //glEnable(GL_CULL_FACE);		// Do not try to display the back sides
 	
 	
     // Enable lighting
@@ -525,7 +524,12 @@ void testApp::keyPressed(int key){
 		case 356: yRot -= 5.0f; break;
 		case 359: xRot+= 5.0f; break;
 		case 358: yRot += 5.0f; break;
-		case 'r': xRot = 0.0f; yRot = 0.0f; break;
+		case OF_KEY_BACKSPACE:
+			zspeed = yspeed = xspeed = 0.0f;
+			//fall through
+		case 'r': 
+			xRot = yRot = yrot = xrot = zrot = 0.0f; 
+			break;
 		
 		case '=':
 			ambientLightR +=.1;
@@ -539,7 +543,7 @@ void testApp::keyPressed(int key){
 			ambientLightB -=.1;
 			break;
 			
-			
+		/*	
 		case '1':
             iShade = MODE_FLAT;
             break;
@@ -559,6 +563,7 @@ void testApp::keyPressed(int key){
         case '5':
             iTess = MODE_VERYHIGH;
             break;
+		 */
 			
 		case ' ': ofToggleFullscreen(); break;
 			
@@ -586,12 +591,23 @@ void testApp::keyPressed(int key){
 		case 'f': boxes.setFloor(!boxes.isFloorEnabled); break;
 		case 'p': palettes.togglePalette(); break;
 			
-#ifdef DEBUG
+
 		case '/':	
 			mouseMode = (mouseMode + 1) % 3;
 			break;
-#endif			
 		
+		case '1':
+			mouseMode = 0;
+			break;
+		case '2':
+			mouseMode = 1;
+			break;
+		case '3':
+			mouseMode = 2;	
+			break;
+		case '4':
+			mouseMode = 3;	
+			break;	
 	}
 }
 
@@ -604,14 +620,41 @@ void testApp::keyReleased(int key){
 void testApp::mouseMoved(int x, int y ){
 	//spotCutOff = ((float)mouseX / (float)ofGetWidth()) * 180.0f;
 	//spotExponent = ((float)mouseY / (float)ofGetHeight()) * 50.0f;
+	onMouseMove(x, y, mouseMode);
+	
+}
 
-#ifdef DEBUG	
-	switch (mouseMode) {
+void testApp::onMouseMove(int x, int y, int mode ){
+	switch (mode) {
 		case 1:
+			yspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
+			break;
+			
+		case 2:
+			lightPos[0] = ((float)mouseX / (float)ofGetWidth()) * ofGetWidth() - ofGetWidth() / 2.0f;
+			lightPos[1] = ((float)mouseY / (float)ofGetHeight()) * ofGetHeight() - ofGetHeight() / 2.0f;
+			break;		
+		case 3:
+			lightPos[1] = ((float)mouseY / (float)ofGetHeight()) * ofGetHeight() - ofGetHeight() / 2.0f;
+			lightPos[2] = ((float)mouseX / (float)ofGetWidth()) *  ofGetWidth() - ofGetWidth() / 2.0f;
+			break;		
+			/*
+		case 1:
+			yspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
+			break;
+		case 2:
+			xspeed = ((float)mouseY / (float)ofGetHeight()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
+			break;		
+		case 3:
+			xspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
+			break;	
+			*/
+			
+		case 4:
 			lightScatter.uniformExposure = ((float)mouseX / (float)ofGetWidth() * 10.0f) * 0.0034f;
 			lightScatter.uniformDecay = ((float)mouseY / (float)ofGetHeight() * 2.0f) * 1.0f;
 			break;
-		case 2:
+		case 5:
 			lightScatter.uniformDensity = ((float)mouseX / (float)ofGetWidth() * 10.0f) * 0.84f;
 			lightScatter.uniformWeight = ((float)mouseY / (float)ofGetHeight() * 10.0f) * 5.65f;
 			break;	
@@ -621,15 +664,15 @@ void testApp::mouseMoved(int x, int y ){
 
 			break;
 	}
-#else
-	scatterX = mouseX;
-	scatterY = ofGetHeight() - mouseY;
-#endif		
+
+//	scatterX = mouseX;
+//	scatterY = ofGetHeight() - mouseY;
+	
 }
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-
+	onMouseMove(x, y, button);
 }
 
 //--------------------------------------------------------------

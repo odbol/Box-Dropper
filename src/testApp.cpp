@@ -746,7 +746,14 @@ void testApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-
+	
+	
+	lightScatter.reset(ofGetWidth()/OFF_SCREEN_RENDER_RATIO, ofGetHeight()/OFF_SCREEN_RENDER_RATIO);
+	
+	
+	fboLight.clean();
+	fboLight.allocate(ofGetWidth(), ofGetHeight(), true);
+	
 }
 
 

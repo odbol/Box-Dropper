@@ -20,6 +20,7 @@ int main(int argc, char **argv){
 	}
 	else {
 		ofSetupOpenGL(&window, 1024,768, OF_WINDOW);			// <-------- setup the GL context
+		//ofSetWindowPosition(0,0);
 	}
 	
 	// this kicks off the running of my app

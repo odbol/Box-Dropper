@@ -46,6 +46,11 @@ void lightScattering::setLightParams(float xPos, float yPos){
 	pos.y			= yPos;
 }
 
+void lightScattering::reset(int fboW, int fboH) {
+	fbo.clean();
+	fbo.allocate(fboW, fboH, true);
+}
+
 //--------------------------------------------------------------
 void lightScattering::draw(float x, float y, float w, float h, bool useShader){
 	

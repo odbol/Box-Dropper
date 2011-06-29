@@ -32,4 +32,6 @@ public:
 	float uniformWeight;
 	
 	float flickerAmount;
+	
+	void reset(int fboW, int fboH);
 };

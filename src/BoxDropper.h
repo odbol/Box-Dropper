@@ -78,8 +78,8 @@ public:
 	
 	ofxBox2dLine					lineStrip;		  //	a linestrip for drawing
 	
-	void dropBox(int x, int y);
-	void dropBoxInCol(int col);
+	void dropBox(int x, int y, float velocity = 0.0f);
+	void dropBoxInCol(int col, float velocity = 0.0f);
 	
 	void killOutOfBounds();
 	

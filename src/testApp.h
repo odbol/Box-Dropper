@@ -93,7 +93,7 @@ class testApp : public ofBaseApp{
 	void pSetColor(ofColor* color, float r, float b, float g, float a);
 
 	//boxes
-	void dropBox();
+	void dropBox(float velocity = 0.0f);
 private: 
 	BoxDropper boxes;
 	void drawBoxes();

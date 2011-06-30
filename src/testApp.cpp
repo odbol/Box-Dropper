@@ -585,6 +585,9 @@ void testApp::keyPressed(int key){
 	printf("keyPressed = (%i)", key);
 	//sprintf(eventString, "keyPressed = (%i)", key);
 	
+	const int modKey = glutGetModifiers();
+	
+	
 	switch(key) {
 		case 357: xRot-= 5.0f; break;
 		case 356: yRot -= 5.0f; break;
@@ -633,8 +636,23 @@ void testApp::keyPressed(int key){
 			
 		case OF_KEY_RETURN: ofToggleFullscreen(); break;
 			
-		case ' ': dropBox(); break;	
-			
+		case ' ':
+		case 'B':
+		case 'b': {
+			float vel = ofRandom(0.1f, 2.0f);
+			if (modKey & GLUT_ACTIVE_SHIFT) {  
+				vel += 10.0f;
+			}
+			if (modKey & GLUT_ACTIVE_ALT) {  
+				vel += 30.0f;
+			}  
+			if (modKey & GLUT_ACTIVE_CTRL) {  
+				vel += 50.0f;
+			}  
+		
+			dropBox(vel); 
+			break;	
+		}	
 		case 'j': zspeed+=0.01f; break;
 		case 'l': zspeed-=0.01f; break;
 		case 'k': xspeed+=0.01f; break;
@@ -757,14 +775,14 @@ void testApp::mouseDragged(int x, int y, int button){
 	onMouseMove(x, y, mouseMode >= 0 ? button : mouseMode);
 }
 
-void testApp::dropBox() {
+void testApp::dropBox(float velocity) {
 	//load palettes
 	if (!isMonochrome) {
 		boxes.setColor(palettes.getRandomPalette(250));
 	}
 	
 	
-	boxes.dropBoxInCol(ofRandom(0, NUM_COLS));
+	boxes.dropBoxInCol(ofRandom(0, NUM_COLS), velocity);
 }
 
 //--------------------------------------------------------------

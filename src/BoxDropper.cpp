@@ -189,12 +189,12 @@ void BoxDropper::draw() {
 	 */
 }
 
-void BoxDropper::dropBoxInCol(int col) {
-	dropBox(col * boxWidth, -boxHeight);
+void BoxDropper::dropBoxInCol(int col, float velocity) {
+	dropBox(col * boxWidth, -boxHeight, velocity);
 }
 
 
-void BoxDropper::dropBox(int x, int y) {
+void BoxDropper::dropBox(int x, int y, float velocity) {
 	//garbage collect
 	killOutOfBounds();
 	
@@ -218,6 +218,7 @@ void BoxDropper::dropBox(int x, int y) {
 
 	rect.setPhysics(mass, bounce, 0.5);
 	rect.setup(box2d.getWorld(), x, y, boxWidth, boxHeight);
+	rect.setVelocity(0.0f, velocity);
 	boxes.push_back(rect);
 }
 

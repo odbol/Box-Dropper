@@ -56,7 +56,7 @@ void BoxDropper::setup() {
 		}
 	}
 	
-	floorHeight = ofGetHeight() + 20;
+	floorHeight = ofGetHeight() + 50;
 	setFloor(true);
 	
 	//blur.setup(ofGetWidth(), ofGetHeight());

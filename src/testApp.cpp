@@ -75,8 +75,8 @@ void testApp::setup(){
 	sphereHueSpeed = 0.0001f;
 	sphereHue = 0.0f;
 	//pSetHSV(&sphereColor, 10.0f, 1.0f, 1.0f, 1.0f);
-	sphereColor.set(.0, .0, 1.0).setRange(255).setMode(OF_COLOR_RGB);
-	sphereOtherColor.set(1.0, .0, 0.0).setRange(255).setMode(OF_COLOR_RGB);
+	sphereColor.set(.0, 1.0, 1.0).setMode(OF_COLOR_HSV);//.setRange(255).setMode(OF_COLOR_HSV);
+	//sphereOtherColor.set(1.0, .0, 0.0).setRange(255).setMode(OF_COLOR_RGB);
 	
 	//myColor.set(.1, .2, .3).setRange(255).setMode(OF_COLOR_HSV).normalize().setMode(OF_COLOR_RGB);
 	
@@ -218,6 +218,7 @@ void testApp::update(){
 	GLfloat  ambientLight[] = { ambientLightR, ambientLightG, ambientLightB, 1.0f};
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
 	
+	/*
 	//update sphere color
 	if (sphereHueSpeed != 0) {
 		sphereHue = (sphereHue + sphereHueSpeed);
@@ -239,6 +240,7 @@ void testApp::update(){
 		//sphereHue = 0.01f;
 		sphereColor.lerp(sphereOtherColor, ABS(sphereHueSpeed));
 	}
+	 */
 	
 	//init boxes
 	boxes.update(); 
@@ -687,7 +689,11 @@ void testApp::mouseMoved(int x, int y ){
 
 void testApp::onMouseMove(int x, int y, int mode ){
 	switch (mode) {
-		case 1:
+			
+		case 1:	
+			sphereColor.set(MIN(0.9999f, ((float)mouseX / (float)ofGetWidth())), 1.0f, 1.0f);//.setRange(255).setMode(OF_COLOR_HSV);
+			break;
+		case 2:
 			yspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
 			break;
 			/*
@@ -699,11 +705,11 @@ void testApp::onMouseMove(int x, int y, int mode ){
 			lightPos[1] = ((float)mouseY / (float)ofGetHeight()) * ofGetHeight() - ofGetHeight() / 2.0f;
 			lightPos[2] = ((float)mouseX / (float)ofGetWidth()) *  ofGetWidth() - ofGetWidth() / 2.0f;
 			break;		
-				*/
+				
 
 		case 2:
 			xspeed = ((float)mouseY / (float)ofGetHeight()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
-			break;		
+			break;	*/	
 		case 3:
 			xspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;
 			break;	

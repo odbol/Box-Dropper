@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>3CE1554813BC48F40020D9C8</string>
+						<string>3CE155FB13BC50D00020D9C8</string>
 						<key>history</key>
 						<array>
 							<string>3CDC587D13BBBF9600A92694</string>
@@ -371,7 +371,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3CE1554713BC48F40020D9C8</string>
+										<string>3CE155FA13BC50D00020D9C8</string>
 										<key>history</key>
 										<array>
 											<string>3CE6845613B323F300826E3D</string>
@@ -422,7 +422,6 @@
 											<string>3C71B8E613BB1E4600CF4D67</string>
 											<string>3C71B8E813BB1E4600CF4D67</string>
 											<string>3C71B8E913BB1E4600CF4D67</string>
-											<string>3CEB4BE613BB2BAD00EB6602</string>
 											<string>3CEB4BFC13BB2E4A00EB6602</string>
 											<string>3CEB4BFD13BB2E4A00EB6602</string>
 											<string>3CEB4BFE13BB2E4A00EB6602</string>
@@ -439,8 +438,10 @@
 											<string>3CDC583013BBB9DF00A92694</string>
 											<string>3CDC583113BBB9DF00A92694</string>
 											<string>3CDC585013BBBCF600A92694</string>
-											<string>3CDC585113BBBCF600A92694</string>
-											<string>3CDC587C13BBBF9600A92694</string>
+											<string>3CE155E913BC501C0020D9C8</string>
+											<string>3CE155EB13BC501C0020D9C8</string>
+											<string>3CE155EC13BC501C0020D9C8</string>
+											<string>3CE155ED13BC501C0020D9C8</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -638,6 +639,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>3CE155FC13BC50D00020D9C8</string>
 		<string>3CE1554513BC48620020D9C8</string>
 		<string>3CE1554613BC48620020D9C8</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -668,7 +670,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>testApp.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -685,6 +687,8 @@
 							<string>328pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

@@ -2,7 +2,7 @@
 #define _TEST_APP
 
 //comment out to disable debug stamtents
-//# define DEBUG
+#define DEBUG
 
 #include "ofMain.h"
 #include "ofxFBOTexture.h"

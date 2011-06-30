@@ -72,12 +72,13 @@ void testApp::setup(){
 	glEndList();
 	*/
 	
-	//sphereHueSpeed = 0.01f;
+	sphereHueSpeed = 0.0001f;
 	sphereHue = 0.0f;
 	//pSetHSV(&sphereColor, 10.0f, 1.0f, 1.0f, 1.0f);
-	sphereColor.setRange(255).setMode(OF_COLOR_RGB).set(0,0,255);
-	sphereOtherColor.setRange(255).setMode(OF_COLOR_RGB).set(255,0,0);
+	sphereColor.set(.0, .0, 1.0).setRange(255).setMode(OF_COLOR_RGB);
+	sphereOtherColor.set(1.0, .0, 0.0).setRange(255).setMode(OF_COLOR_RGB);
 	
+	//myColor.set(.1, .2, .3).setRange(255).setMode(OF_COLOR_HSV).normalize().setMode(OF_COLOR_RGB);
 	
 	
 	
@@ -218,15 +219,25 @@ void testApp::update(){
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
 	
 	//update sphere color
-	if (sphereHueSpeed > 0.0f) {
+	if (sphereHueSpeed != 0) {
 		sphereHue = (sphereHue + sphereHueSpeed);
-		if (sphereHue >= 1.0f) {
+		if (sphereHue >= 0.02f) {
+			sphereHueSpeed = -sphereHueSpeed;
+			sphereHue = 0.02f;
+			//sphereOtherColor.set(0,0,255);
+			sphereOtherColor.set(1.0, .0, 0.0).setRange(255).setMode(OF_COLOR_RGB);
+		}
+		else if (sphereHue <= 0.0f) {
+			sphereHueSpeed = -sphereHueSpeed;
 			sphereHue = 0.0f;
-			sphereColor.set(0,0,255);
+			//sphereOtherColor.set(255,0,0);
+			sphereOtherColor.set(1.0, .0, 0.0).setRange(255).setMode(OF_COLOR_RGB);
 		}
 		//pSetHSV(&sphereColor, sphereHue, 1.0f, 1.0f, 1.0f);
 		
-		sphereColor.lerp(sphereOtherColor, sphereHue);
+		//sphereHue = (float)mouseX / (float)ofGetWidth();
+		//sphereHue = 0.01f;
+		sphereColor.lerp(sphereOtherColor, ABS(sphereHueSpeed));
 	}
 	
 	//init boxes

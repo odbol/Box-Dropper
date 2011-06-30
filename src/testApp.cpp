@@ -43,8 +43,25 @@ int iTess = MODE_VERYHIGH;
 
 #define OFF_SCREEN_RENDER_RATIO 6
 
+/*
+void testApp::refreshSize() {
+	int windowMode = ofGetWindowMode();  
+    if(windowMode == OF_FULLSCREEN){  
+        this->ofGetWidth() = ofGetScreenWidth();  
+        this->ofGetHeight() = ofGetScreenHeight();  
+    }  
+    else if(windowMode == OF_WINDOW){  
+        this->windowWidth = ofGetWidth();  
+        this->windowHeight = ofGetHeight();  
+    }  
+}
+ */
+
 //--------------------------------------------------------------
 void testApp::setup(){	
+	//refreshSize();
+	
+	
 	ofBackground(0, 0, 0);
 	ofSetVerticalSync(true);
 
@@ -763,7 +780,7 @@ void testApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-	
+	//refreshSize();
 	
 	lightScatter.reset(ofGetWidth()/OFF_SCREEN_RENDER_RATIO, ofGetHeight()/OFF_SCREEN_RENDER_RATIO);
 	

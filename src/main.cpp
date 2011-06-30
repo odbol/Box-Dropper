@@ -10,16 +10,29 @@ int main(int argc, char **argv){
 	
 	
     ofAppGlutWindow window;
+
+	int xres = 1024;
+	int yres = 768;
+	
+	if (args->contains("--xres")) {
+		xres = args->getInt("--xres");
+		yres = args->getInt("--yres");
+	}
 	
 	if (args->contains("--fullscreen")) {
-		ofSetupOpenGL(&window, 1024,768, OF_GAME_MODE);			// <-------- setup the GL context
+		ofSetupOpenGL(&window, xres,yres, OF_GAME_MODE);			// <-------- setup the GL context
 	}
 	else if (args->contains("--maximized")) {
-		ofSetupOpenGL(&window, 1024,768, OF_FULLSCREEN);			// <-------- setup the GL context
+		ofSetupOpenGL(&window, xres, yres, OF_WINDOW);			// <-------- setup the GL context
+		
+		
 		ofSetWindowPosition(0,0);
+		ofSetFullscreen(true);
+		ofSetWindowShape(xres, yres);	
+		//ofSetFullscreen(true);
 	}
 	else {
-		ofSetupOpenGL(&window, 1024,768, OF_WINDOW);			// <-------- setup the GL context
+		ofSetupOpenGL(&window, xres,yres, OF_WINDOW);			// <-------- setup the GL context
 		//ofSetWindowPosition(0,0);
 	}
 	

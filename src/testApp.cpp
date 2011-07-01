@@ -599,19 +599,30 @@ void testApp::keyPressed(int key){
 		case 'r': 
 			xRot = yRot = yrot = xrot = zrot = 0.0f; 
 			break;
-		
+			
+
+		case '+':
+			ambientLightR +=.01;
+			ambientLightG +=.01; 
+			ambientLightB +=.01;
+			break;
 		case '=':
 			ambientLightR +=.1;
 			ambientLightG +=.1; 
 			ambientLightB +=.1;
 			break;
-			
+		
+		case '_':
+			ambientLightR -=.01;
+			ambientLightG -=.01; 
+			ambientLightB -=.01;
+			break;
 		case '-':
 			ambientLightR -=.1;
 			ambientLightG -=.1; 
 			ambientLightB -=.1;
 			break;
-			
+
 		/*	
 		case '1':
             iShade = MODE_FLAT;
@@ -726,7 +737,7 @@ void testApp::onMouseMove(int x, int y, int mode ){
 	switch (mode) {
 			
 		case 1:	
-			sphereColor.set(MIN(0.9999f, ((float)mouseX / (float)ofGetWidth())), 1.0f, 1.0f);//.setRange(255).setMode(OF_COLOR_HSV);
+			sphereColor.set(MAX(0.0f, MIN(0.9999f, ((float)mouseY / (float)ofGetHeight()))), 1.0f, 1.0f);//.setRange(255).setMode(OF_COLOR_HSV);
 			break;
 		case 2:
 			yspeed = ((float)mouseX / (float)ofGetWidth()) * ROTATION_SPEED_MAX - ROTATION_SPEED_MAX / 2.0f;

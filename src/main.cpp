@@ -27,8 +27,11 @@ int main(int argc, char **argv){
 		
 		
 		ofSetWindowPosition(0,0);
-		ofSetFullscreen(true);
-		ofSetWindowShape(xres, yres);	
+		
+		if (args->contains("--fullscreen")) {
+			ofSetFullscreen(true);		
+			ofSetWindowShape(xres, yres);	
+		}
 		//ofSetFullscreen(true);
 	}
 	else {

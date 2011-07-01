@@ -23,6 +23,15 @@ choose Add->Existing Files, and find them in your openFrameworks/addons director
 (or where you downloaded them).
 
 
+COMING SOON:
+
+ * OSC support
+ * more lighting
+
+
+
+CREDITS:
+
 Based on the hard work and resulting code from:
 
 plong0 @ http://forum.openframeworks.cc/index.php?topic=2729.0 

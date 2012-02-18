@@ -6,8 +6,11 @@
 
 #include "ofMain.h"
 #include "ofxFBOTexture.h"
-#include "ofxShader.h"
-#include "ofxVectorMath.h"
+#include "ofShader.h"
+#include "ofVectorMath.h"
+
+
+#include <GLUT/GLUT.h>
 
 #include "lightScattering.h"
 
@@ -55,7 +58,7 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 	
 	
-		ofxVec3f centerScene;
+		ofVec3f centerScene;
 		
 		void setupViewer(bool _transform = false);
 		void drawAxis();

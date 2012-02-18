@@ -47,6 +47,7 @@ void BoxDropper::setup() {
 		ballJoints[i].setup(box2d.getWorld(), x, y, 10);		
 	}
 	// connect all the ball joints
+	/*
 	for(int i=1; i<5; i++) {
 		joints[i].setWorld(box2d.getWorld());
 		joints[i].addJoint(ballJoints[i].body, ballJoints[i-1].body, 3.0, 0.5);
@@ -55,6 +56,7 @@ void BoxDropper::setup() {
 			joints[0].addJoint(ballJoints[4].body, ballJoints[0].body, 3.0, 0.5);
 		}
 	}
+	 */
 	
 	floorHeight = ofGetHeight() + 50;
 	setFloor(true);
@@ -64,16 +66,16 @@ void BoxDropper::setup() {
 
 void BoxDropper::setFloor(bool isEnabled) {
 	
-	lineStrip.setPhysics(0, 0,0);
-	lineStrip.setWorld(box2d.getWorld());
-	lineStrip.clear();
+	//lineStrip.setPhysics(0, 0,0);
+	//lineStrip.setWorld(box2d.getWorld());
+	//lineStrip.clear();
 
 
 	if (isEnabled) {
 		// lets draw a simple lanscape
 
-		lineStrip.addPoint(-WALL_PADDING, 0);
-		lineStrip.addPoint(-WALL_PADDING, floorHeight);
+		//lineStrip.addPoint(-WALL_PADDING, 0);
+		//lineStrip.addPoint(-WALL_PADDING, floorHeight);
 		
 		//draw jagged floor
 		ofPoint p(-WALL_PADDING, floorHeight);
@@ -81,16 +83,16 @@ void BoxDropper::setFloor(bool isEnabled) {
 		const int inc = (ofGetWidth() + WALL_PADDING) / segs;
 		for(int i=0; i < segs; i++) {
 			p.x += inc;
-			lineStrip.addPoint(p.x, p.y+sin(i*ofRandom(0.01, 0.5))*30);
+			//lineStrip.addPoint(p.x, p.y+sin(i*ofRandom(0.01, 0.5))*30);
 		}
 		
-		lineStrip.addPoint(ofGetWidth() + WALL_PADDING, floorHeight);
-		lineStrip.addPoint(ofGetWidth() + WALL_PADDING, 0);
+		//lineStrip.addPoint(ofGetWidth() + WALL_PADDING, floorHeight);
+		//lineStrip.addPoint(ofGetWidth() + WALL_PADDING, 0);
 		
 		/*
 		
 		 */
-		lineStrip.createShape();
+		//lineStrip.createShape();
 	}
 	
 	isFloorEnabled = isEnabled;
@@ -107,6 +109,7 @@ void BoxDropper::update() {
 		float strength = 8.0f;
 		float damping  = 0.7f;
 		float minDis   = 100;
+		/*
 		for(int i=0; i<circles.size(); i++) {
 			circles[i].addAttractionPoint(mouseX, mouseY, strength, minDis);
 			circles[i].addDamping(damping, damping);
@@ -115,6 +118,7 @@ void BoxDropper::update() {
 			customParticles[i].addAttractionPoint(mouseX, mouseY, strength, minDis);
 			customParticles[i].addDamping(damping, damping);
 		}
+		 */
 		
 	}
 	
@@ -131,7 +135,7 @@ void BoxDropper::killOutOfBounds() {
 		ofPoint tmppos = it->getPosition();//boxes[i].getPosition();  
 		if (tmppos.y > ofGetHeight() * 2){  
 			//boxes[i].destroyShape();
-			it->destroyShape();
+			it->destroy();//Shape();
 			boxes.erase(it);
 		}  
 	}  
@@ -153,10 +157,11 @@ void BoxDropper::draw() {
 	for(int i=0; i<boxes.size(); i++) {
 		boxes[i].draw();
 	}
-
+/* depriciated
 	for(int i=0; i<lines.size(); i++) {
 		lines[i].draw();
 	}
+ */
 	for(int i=0; i<customParticles.size(); i++) {
 		customParticles[i].draw();
 	}
@@ -168,7 +173,7 @@ void BoxDropper::draw() {
 	for(int i=0; i<5; i++) ballJoints[i].draw();
 	for(int i=0; i<5; i++) joints[i].draw();
 	
-	lineStrip.draw();
+	//lineStrip.draw();
 	box2d.draw();
 	
 	px = mouseX;
@@ -275,7 +280,7 @@ void BoxDropper::mouseMoved(int x, int y ) {
 void BoxDropper::mouseDragged(int x, int y, int button) {
 	
 	if(bDrawLines) {
-		lineStrip.addPoint(x, y);
+		//lineStrip.addPoint(x, y);
 	}
 }
 
@@ -283,15 +288,15 @@ void BoxDropper::mouseDragged(int x, int y, int button) {
 void BoxDropper::mousePressed(int x, int y, int button) {
 	
 	if(bDrawLines) {
-		lineStrip.setWorld(box2d.getWorld());
-		lineStrip.clear();
+		//lineStrip.setWorld(box2d.getWorld());
+		//lineStrip.clear();
 	}
 	
 }
 
 //--------------------------------------------------------------
 void BoxDropper::mouseReleased(int x, int y, int button){
-	if(bDrawLines) lineStrip.createShape();
+	//if(bDrawLines) lineStrip.createShape();
 	
 }
 

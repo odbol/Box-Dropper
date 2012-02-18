@@ -1,5 +1,5 @@
 #include "ofMain.h"
-#include "ofxShader.h" 
+#include "ofShader.h" 
 #include "ofxFBOTexture.h"
 
 
@@ -14,7 +14,7 @@ public:
 	void setLightParams(float xPos, float yPos);
 	void draw(float x, float y, float w, float h, bool useShader);
 	
-	ofxShader shader;
+	ofShader shader;
 	
 	ofxFBOTexture fbo;
 	

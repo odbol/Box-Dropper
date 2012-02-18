@@ -10,7 +10,7 @@ void lightScattering::setup(int fboW, int fboH){
 	
 	fbo.allocate(fboW, fboH, true);
 	
-	shader.loadShader("shaders/lightScattering");
+	shader.load("shaders/lightScattering");
 	
 	pos.set(100, 100);
 	posZ = 100;
@@ -59,17 +59,17 @@ void lightScattering::draw(float x, float y, float w, float h, bool useShader){
 		
 		
 		//first the horizontal shader 
-		shader.setShaderActive(true);		
-		shader.setUniformVariable2f("lightPositionOnScreen",pos.x/OFF_SCREEN_RENDER_RATIO,pos.y/OFF_SCREEN_RENDER_RATIO);
-		shader.setUniformVariable1f("exposure",uniformExposure + ofRandom(-flickerAmount, flickerAmount));
-		shader.setUniformVariable1f("decay",uniformDecay);
-		shader.setUniformVariable1f("density",uniformDensity);
-		shader.setUniformVariable1f("weight",uniformWeight);
+		shader.begin();//setShaderActive(true);		
+		shader.setUniform2f("lightPositionOnScreen",pos.x/OFF_SCREEN_RENDER_RATIO,pos.y/OFF_SCREEN_RENDER_RATIO);
+		shader.setUniform1f("exposure",uniformExposure + ofRandom(-flickerAmount, flickerAmount));
+		shader.setUniform1f("decay",uniformDecay);
+		shader.setUniform1f("density",uniformDensity);
+		shader.setUniform1f("weight",uniformWeight);
 		
 		ofSetColor(255, 255, 255);
 		fbo.draw(0, 0, w, h);
 		
-		shader.setShaderActive(false);
+		shader.end(); //setShaderActive(false);
 		
 	}else{
 		fbo.draw(0, 0, w, h);

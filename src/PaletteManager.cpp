@@ -76,8 +76,8 @@ void PaletteManager::togglePalette() {
 	//if (img != NULL)
 	//	delete img;
 	
-	ofxDirList   DIR;
-	DIR.setVerbose(false);
+	ofDirectory   DIR;
+	//DIR.setVerbose(false);
     int nImages = DIR.listDir("palettes");
  	
 	printf("\nloading palette %s\n", DIR.getPath(paletteIdx).c_str());

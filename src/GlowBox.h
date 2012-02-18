@@ -10,8 +10,10 @@
  */
 #pragma once
 #include "ofMain.h"
-#include "ofxVectorMath.h"
+#include "ofVectorMath.h"
 #include "ofxBox2d.h"
+
+#include <GLUT/GLUT.h>
 
 // ------------------------------------------------- a simple extended box2d circle
 class GlowBox : public ofxBox2dRect {

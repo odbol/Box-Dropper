@@ -13,7 +13,7 @@ void GlowBox::setup(b2World * b2dworld, float x, float y, float w, float h, bool
 	width = w;
 	height = h;
 	
-	ofxBox2dRect::setup(b2dworld, x, y, w, h, isFixed);
+	ofxBox2dRect::setup(b2dworld, x, y, w, h);//, isFixed);
 }
 
 bool GlowBox::is3D;
@@ -92,7 +92,7 @@ void GlowBox::draw() {
 	
 	return;
 	
-	
+	/*
 	//wow this is a pain
 	b2Shape* s = body->GetShapeList();
 	const b2XForm& xf = body->GetXForm();
@@ -123,4 +123,6 @@ void GlowBox::draw() {
 	}
 	ofEndShape(true);	
 	ofDisableAlphaBlending();
+	 
+	 */
 }

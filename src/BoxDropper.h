@@ -7,13 +7,13 @@
 
 #pragma once
 //# include "ofMain.h"
-#include "ofxVectorMath.h"
+#include "ofVectorMath.h"
 #include "ofxBox2d.h"
 #include "GlowBox.h"
 
 
 #include "ofxFBOTexture.h"
-#include "ofxShader.h"
+#include "ofShader.h"
 //# include "shaderBlur.h"
 
 // ------------------------------------------------- a simple extended box2d circle
@@ -70,13 +70,13 @@ public:
 	vector		<ofxBox2dCircle>	circles;		  //	default box2d circles
 	vector		<ofxBox2dPolygon>	polygons;		  //	defalut box2d polgons
 	vector		<GlowBox>		boxes;			  //	defalut box2d rects
-	vector      <ofxBox2dLine>		lines;			  //	default box2d lines (hacked)
+	//vector      <ofxBox2dLine>		lines;			  //	default box2d lines (hacked)
 	vector		<CustomParticle>	customParticles;  //	this is a custom particle the extends a cirlce
 	
 	ofxBox2dCircle					ballJoints[5];	  //	ball joints
 	ofxBox2dJoint					joints[5];		  //	box2d joints
 	
-	ofxBox2dLine					lineStrip;		  //	a linestrip for drawing
+	//ofxBox2dLine					lineStrip;		  //	a linestrip for drawing
 	
 	void dropBox(int x, int y, float velocity = 0.0f);
 	void dropBoxInCol(int col, float velocity = 0.0f);

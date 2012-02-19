@@ -39,11 +39,11 @@ int main(int argc, char **argv){
 		//ofSetWindowPosition(0,0);
 	}
 	
+	delete args;
+	
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN
 	// pass in width and height too:
 	ofRunApp( new testApp());
 
-	
-	delete args;
 }

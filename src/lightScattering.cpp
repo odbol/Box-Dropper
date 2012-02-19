@@ -8,7 +8,7 @@ void lightScattering::setup(int fboW, int fboH){
 	//ofBackground(255,255,255);	
 	//ofSetVerticalSync(true);
 	
-	fbo.allocate(fboW, fboH, true);
+	fbo.allocate(fboW, fboH);//, true); no autoclear
 	
 	shader.load("shaders/lightScattering");
 	
@@ -31,13 +31,13 @@ void lightScattering::setup(int fboW, int fboH){
 
 //--------------------------------------------------------------
 void lightScattering::beginRender(){
-	fbo.swapIn();
-	
+	fbo.begin();//swapIn();
+	ofClear(0,0,0,0); //no more autoclear
 }
 
 //--------------------------------------------------------------
 void lightScattering::endRender(){
-	fbo.swapOut();
+	fbo.end();//swapOut();
 }
 
 //--------------------------------------------------------------
@@ -47,8 +47,8 @@ void lightScattering::setLightParams(float xPos, float yPos){
 }
 
 void lightScattering::reset(int fboW, int fboH) {
-	fbo.clean();
-	fbo.allocate(fboW, fboH, true);
+	//fbo.clean();
+	fbo.allocate(fboW, fboH);//, true);
 }
 
 //--------------------------------------------------------------

@@ -12,8 +12,8 @@
 #include "GlowBox.h"
 
 
-#include "ofxFBOTexture.h"
-#include "ofShader.h"
+//# include "ofFbo.h"
+//# include "ofShader.h"
 //# include "shaderBlur.h"
 
 // ------------------------------------------------- a simple extended box2d circle

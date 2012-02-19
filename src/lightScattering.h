@@ -1,6 +1,6 @@
 #include "ofMain.h"
 #include "ofShader.h" 
-#include "ofxFBOTexture.h"
+#include "ofFbo.h"
 
 
 class lightScattering{
@@ -16,7 +16,7 @@ public:
 	
 	ofShader shader;
 	
-	ofxFBOTexture fbo;
+	ofFbo fbo;
 	
 	ofPoint pos;
 	float posZ;

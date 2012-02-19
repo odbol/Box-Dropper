@@ -71,7 +71,7 @@ void testApp::setup(){
 
 	
 	lightScatter.setup(ofGetWidth()/OFF_SCREEN_RENDER_RATIO, ofGetHeight()/OFF_SCREEN_RENDER_RATIO);
-	fboLight.allocate(ofGetWidth(), ofGetHeight(), true);
+	fboLight.allocate(ofGetWidth(), ofGetHeight());//, true);
 	
 	setupRC();
 	
@@ -291,7 +291,8 @@ void testApp::draw(){
 	//1 - Render offscreen with a FBO: the light source and the occluding objects, 
 	//no shaders involved here. In order to save cycles, you can render to a lower 
 	//resolution (factor 2 gives good results) and disable texturing/depth testing.
-	fboLight.swapIn();
+	fboLight.begin();//swapIn();
+	ofClear(0, 0, 0, 0);
 	
 		glColor4f(1,1,1,1);
 	
@@ -384,7 +385,7 @@ void testApp::draw(){
 		glPopMatrix();
 	
 
-	fboLight.swapOut();
+	fboLight.end();//swapOut();
 	
 	
 	
@@ -490,7 +491,7 @@ void testApp::draw(){
 	lightScatter.setLightParams(scatterX, scatterY);
 	lightScatter.beginRender();
 		ofSetColor(255, 255, 255);
-		fboLight.draw(0, 0);//doesn't line up right:, ofGetWidth(),ofGetHeight());
+		fboLight.draw(0, 0);// /*doesn't line up right:*/, ofGetWidth(),ofGetHeight());
 	lightScatter.endRender();
 	
 	lightScatter.draw(0, 0, ofGetWidth(),ofGetHeight(), true);
@@ -520,7 +521,13 @@ void testApp::draw(){
 						   "\n"
 						   " z and x : move on the X \n "
 						   "a and s : move on the Y \n "
-						   "q and w : move on the Z \n ", 2, 60);
+						   "q and w : move on the Z \n "
+						   "s: sphereEnabled \n "
+						   "f: toggle floor \n "
+						   "p: togglepalettes \n "
+						   "shift/alt: speed \n "
+						   "/: toggle mouse mode (1-5) \n "
+						   , 2, 60);
 	 
 	glPopMatrix();
 #endif
@@ -816,8 +823,8 @@ void testApp::windowResized(int w, int h){
 	lightScatter.reset(ofGetWidth()/OFF_SCREEN_RENDER_RATIO, ofGetHeight()/OFF_SCREEN_RENDER_RATIO);
 	
 	
-	fboLight.clean();
-	fboLight.allocate(ofGetWidth(), ofGetHeight(), true);
+	//fboLight.clean();
+	fboLight.allocate(ofGetWidth(), ofGetHeight());//, true);
 	
 }
 

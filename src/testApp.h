@@ -5,7 +5,7 @@
 //#define DEBUG
 
 #include "ofMain.h"
-#include "ofxFBOTexture.h"
+#include "ofFbo.h"
 #include "ofShader.h"
 #include "ofVectorMath.h"
 
@@ -66,7 +66,7 @@ class testApp : public ofBaseApp{
 	
 	//Light
 	lightScattering lightScatter;
-	ofxFBOTexture fboLight;
+	ofFbo fboLight;
 	
 	GLuint dListA;
 	GLuint dListB;

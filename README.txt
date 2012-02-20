@@ -7,16 +7,16 @@ You can drop boxes from the ceiling by pressing space or clicking around.
 
 INSTALL:
 
-Requires openFrameworks 006
+Requires openFrameworks 007
 with:
 	ofxColor
 	ofxArgs
 	ofxBox2d
-	ofxShader
 	
-(included in 006):	
-	ofxDirList 
-	ofxVectorMath
+(included in 007):	
+	ofDirectory 
+	ofVectorMath
+	ofShader
 	
 To include the above addons in your XCode project, right click your project, 
 choose Add->Existing Files, and find them in your openFrameworks/addons directory 
